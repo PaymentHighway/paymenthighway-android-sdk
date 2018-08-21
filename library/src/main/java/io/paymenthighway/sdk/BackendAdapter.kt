@@ -3,7 +3,7 @@ package io.paymenthighway.sdk
 import io.paymenthighway.sdk.model.TransactionId
 import io.paymenthighway.sdk.util.Result
 
-interface BackendAdapter<V, E> {
+interface BackendAdapter<V, E: Exception> {
 
     fun getTransactionId(completion: (Result<TransactionId, E>) -> Unit)
 

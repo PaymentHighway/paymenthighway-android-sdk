@@ -1,38 +1,38 @@
 package io.paymenthighway.sdk
 
+import io.paymenthighway.sdk.exception.*
 import io.paymenthighway.sdk.model.*
+import io.paymenthighway.sdk.util.CallbackResult
+import io.paymenthighway.sdk.util.CallbackResultConvert
 import io.paymenthighway.sdk.util.Result
+import io.paymenthighway.sdk.util.tokenizeCardData
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
+internal class PaymentHighwayService(val merchantId: MerchantId, val accountId: AccountId) {
 
-//internal data class TransactionKeyResult(val result: ApiResultInfo? = null, val key: String? = null) {
-//    class Deserializer : ResponseDeserializable<TransactionKeyResult> {
-//        override fun deserialize(content: String) = Gson().fromJson(content, TransactionKeyResult::class.java)
-//    }
-//}
+    fun transactionKey(transactionId: TransactionId, completion: (Result<TransactionKey, Exception>) -> Unit) {
 
-//class TransactionKeyDeserializer : ResponseDeserializable<TransactionKey> {
-//    inline fun <reified T> fromJson(content: String): T?  = Gson().fromJson(content, T::class.java)
-//    override fun deserialize(content: String) = Gson().fromJson(content, TransactionKey::class.java)
-//}
-//
+        val api = PaymentHighwayEndpoint.create(merchantId, accountId).transactionKey(transactionId)
 
-sealed class NetworkError {
-
-}
-class PaymentHighwayService(val merchantId: MerchantId, val accountId: AccountId) {
-
-    fun transactionKey(transactionId: TransactionId, completion: (Result<TransactionKey, PaymentHighwayError>) -> Unit) {
-//        println("transactionKey ----> start")
-//        Fuel.request(PaymentHighwayEndpoint.transactionKey(merchantId, accountId, transactionId))
-//             .responseObject(TransactionKeyDeserializer()) { _, _, result ->
-//            println("transactionKey result---->$result")
-//            completion(result)
-//        }
+        api.enqueue(CallbackResultConvert(completion) {
+            if (it.key.isNullOrEmpty()) Result.failure(InternalErrorException(it.result?.code ?: 0, it.result?.message ?: "Unknown error")) else Result.success(TransactionKey(it.key!!))
+        })
     }
 
     fun tokenizeTransaction(
         transactionId: TransactionId,
         cardData: CardData,
-        transactionKey: TransactionKey) {
+        transactionKey: TransactionKey,
+        completion: (Result<ApiResult, Exception>) -> Unit) {
+
+        val tokenizeCardDataResult = tokenizeCardData(cardData, transactionKey)
+        val tokenizeCardData = try { tokenizeCardDataResult.getOrThrow() } catch (exception: Exception) {  completion(Result.failure(tokenizeCardDataResult.isError!!))
+            return
+        }
+
+        val api = PaymentHighwayEndpoint.create(merchantId, accountId).tokenizeTransaction(transactionId, tokenizeCardData)
+        api.enqueue(CallbackResult(completion))
     }
 }
