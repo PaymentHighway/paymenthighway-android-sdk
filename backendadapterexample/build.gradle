@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    implementation project(':library')
+    implementation project(':sdk')
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"

@@ -1,1 +1,1 @@
-include ':demo', ':library', ':backendadapterexample'
+include ':demo', ':sdk', ':backendadapterexample'
