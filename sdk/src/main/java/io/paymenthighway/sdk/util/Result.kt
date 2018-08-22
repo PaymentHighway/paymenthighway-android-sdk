@@ -29,15 +29,26 @@ sealed class Result <out V, out E: Exception> {
         }
     }
 
-    val isValue: V?
-        get() = when(this) {
+    fun getRawValue(): V? {
+        return when(this) {
             is Success -> this.value
             is Failure -> null
         }
+    }
 
-    val isError: E ?
-        get() = when(this) {
+    fun getRawError(): E? {
+        return when(this) {
             is Success -> null
             is Failure -> this.error
         }
+    }
+
+    val isValue: Boolean
+        get() = when(this) {
+            is Success -> true
+            is Failure -> false
+        }
+
+    val isError: Boolean
+        get() = !isValue
 }

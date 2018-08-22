@@ -6,37 +6,20 @@ import org.hamcrest.CoreMatchers
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
-import org.robolectric.shadows.ShadowLog
 
-
-@RunWith(RobolectricTestRunner::class)
-@Config(manifest=Config.NONE, sdk=[23])
-internal class PaymentHighwayServiceTest  {
+internal class PaymentHighwayServiceTest: BaseTest()  {
 
     val merchantId = MerchantId("test_merchantId")
     val accountId = AccountId("test")
     val cardTest = CardData("4153013999700024", "024", ExpirationDate("11", "2023"))
 
-    lateinit var lock: CountDownLatch
     lateinit var backendAdapter: BackendAdapterExample
     lateinit var service: PaymentHighwayService
 
     @Before
     fun setUp() {
-        ShadowLog.setupLogging()
-        ShadowLog.stream = System.out;
-        lock = CountDownLatch(1)
         backendAdapter = BackendAdapterExample()
         service = PaymentHighwayService(merchantId, accountId)
-    }
-
-    fun await(seconds: Long = 5) {
-        lock.await(seconds, TimeUnit.SECONDS)
     }
 
     @Test

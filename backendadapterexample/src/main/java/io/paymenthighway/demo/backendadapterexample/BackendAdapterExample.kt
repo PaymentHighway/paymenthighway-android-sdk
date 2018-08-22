@@ -9,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class BackendAdapterExample: BackendAdapter<TransactionToken, Exception> {
+class BackendAdapterExample: BackendAdapter<TransactionToken> {
 
     override fun getTransactionId(completion: (Result<TransactionId, Exception>) -> Unit) {
         val api = BackendAdapterEndpointExample.create().transactionKey()
