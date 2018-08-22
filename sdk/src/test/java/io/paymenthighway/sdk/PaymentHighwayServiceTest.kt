@@ -2,6 +2,7 @@ package io.paymenthighway.sdk
 
 import io.paymenthighway.demo.backendadapterexample.BackendAdapterExample
 import io.paymenthighway.sdk.model.*
+import io.paymenthighway.sdk.service.PaymentHighwayService
 import org.hamcrest.CoreMatchers
 import org.junit.Assert
 import org.junit.Before

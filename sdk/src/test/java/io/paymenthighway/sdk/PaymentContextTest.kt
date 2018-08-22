@@ -86,7 +86,7 @@ internal class PaymentContextTest : BaseTest() {
 
     @After
     fun clean() {
-        println("cleaning")
+        PaymentHighwayProperties.baseURL = BuildConfig.BASE_URL
         server.shutdown()
     }
 

@@ -2,6 +2,7 @@ package io.paymenthighway.sdk
 
 import io.paymenthighway.sdk.exception.InternalErrorException
 import io.paymenthighway.sdk.model.*
+import io.paymenthighway.sdk.service.PaymentHighwayService
 import io.paymenthighway.sdk.util.Result
 
 class PaymentContext<V>(config: PaymentConfig, private val backendAdapter: BackendAdapter<V>) {

@@ -1,5 +1,7 @@
-package io.paymenthighway.sdk
+package io.paymenthighway.sdk.service
 
+import io.paymenthighway.sdk.BuildConfig
+import io.paymenthighway.sdk.PaymentHighwayProperties
 import io.paymenthighway.sdk.model.*
 import io.paymenthighway.sdk.util.timestamp
 import okhttp3.Interceptor

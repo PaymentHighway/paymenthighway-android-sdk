@@ -1,4 +1,4 @@
-package io.paymenthighway.sdk
+package io.paymenthighway.sdk.service
 
 import io.paymenthighway.sdk.exception.*
 import io.paymenthighway.sdk.model.*
@@ -6,9 +6,6 @@ import io.paymenthighway.sdk.util.CallbackResult
 import io.paymenthighway.sdk.util.CallbackResultConvert
 import io.paymenthighway.sdk.util.Result
 import io.paymenthighway.sdk.util.tokenizeCardData
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 internal class PaymentHighwayService(val merchantId: MerchantId, val accountId: AccountId) {
 
