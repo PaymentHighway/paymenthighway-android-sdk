@@ -1,13 +1,9 @@
 package io.paymenthighway.demo.backendadapterexample
 
 import io.paymenthighway.sdk.BackendAdapter
-import io.paymenthighway.sdk.exception.*
 import io.paymenthighway.sdk.model.TransactionId
 import io.paymenthighway.sdk.util.CallbackResult
 import io.paymenthighway.sdk.util.Result
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class BackendAdapterExample: BackendAdapter<TransactionToken> {
 

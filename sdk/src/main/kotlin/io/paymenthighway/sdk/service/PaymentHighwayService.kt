@@ -1,5 +1,6 @@
 package io.paymenthighway.sdk.service
 
+import io.paymenthighway.sdk.exception.InternalErrorException
 import io.paymenthighway.sdk.exception.*
 import io.paymenthighway.sdk.model.*
 import io.paymenthighway.sdk.util.CallbackResult
@@ -14,7 +15,8 @@ internal class PaymentHighwayService(val merchantId: MerchantId, val accountId: 
         val api = PaymentHighwayEndpoint.create(merchantId, accountId).transactionKey(transactionId)
 
         api.enqueue(CallbackResultConvert(completion) {
-            if (it.key.isNullOrEmpty()) Result.failure(InternalErrorException(it.result?.code ?: 0, it.result?.message ?: "Unknown error")) else Result.success(TransactionKey(it.key!!))
+            if (it.key.isNullOrEmpty()) Result.failure(InternalErrorException(it.result?.code
+                    ?: 0, it.result?.message ?: "Unknown error")) else Result.success(TransactionKey(it.key!!))
         })
     }
 
