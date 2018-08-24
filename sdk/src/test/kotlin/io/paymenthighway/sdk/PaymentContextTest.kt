@@ -1,8 +1,6 @@
 package io.paymenthighway.sdk
 
-import android.accounts.NetworkErrorException
 import com.google.gson.Gson
-import io.paymenthighway.sdk.exception.ResponseErrorException
 import io.paymenthighway.sdk.exception.UnknowErrorException
 import io.paymenthighway.sdk.model.*
 import io.paymenthighway.sdk.util.Result

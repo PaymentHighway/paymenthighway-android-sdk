@@ -1,7 +1,6 @@
 package io.paymenthighway.sdk.service
 
 import io.paymenthighway.sdk.exception.InternalErrorException
-import io.paymenthighway.sdk.exception.*
 import io.paymenthighway.sdk.model.*
 import io.paymenthighway.sdk.util.CallbackResult
 import io.paymenthighway.sdk.util.CallbackResultConvert
