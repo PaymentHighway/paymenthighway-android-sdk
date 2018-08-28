@@ -38,17 +38,14 @@ data class ExpirationDate(val month: String, val year: String) {
                 2 -> {
                     val digitsAsInt = onlyDigitsExpirationDate.toInt()
                     if ((deleting && expirationDate.length == 2) || ((digitsAsInt < 1 || digitsAsInt > 12))) {
-                        onlyDigitsExpirationDate = onlyDigitsExpirationDate.removeRange(1, 2)
-                        onlyDigitsExpirationDate
+                        onlyDigitsExpirationDate.removeRange(1, 2)
                     } else {
-                        onlyDigitsExpirationDate =  onlyDigitsExpirationDate+"/"
-                        onlyDigitsExpirationDate
+                        onlyDigitsExpirationDate+"/"
                     }
                 }
-                3, 4, 5 -> {
+                in 3..5 -> {
                     if (onlyDigitsExpirationDate.length == 5) onlyDigitsExpirationDate = onlyDigitsExpirationDate.removeRange(4, 5)
-                    onlyDigitsExpirationDate = onlyDigitsExpirationDate.insertAt(2,"/")
-                    onlyDigitsExpirationDate
+                    onlyDigitsExpirationDate.insertAt(2,"/")
                 }
                 else -> ""
             }

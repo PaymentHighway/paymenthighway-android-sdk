@@ -3,7 +3,7 @@ package io.paymenthighway.sdk.util
 
 val String.decimalDigits: String
     get() {
-        val regex = "[^0-9 ]".toRegex()
+        val regex = "[^0-9]".toRegex()
         return regex.replace(this, "")
     }
 
