@@ -77,7 +77,7 @@ internal class PaymentHighwayServiceTest: BaseTest()  {
                 val transactionKey = result.getOrThrow()
                 service.tokenizeTransaction(transactionId, cardTest, transactionKey) { result ->
                     if (result.getOrThrow().result.code == ApiResult.OK) {
-                        backendAdapter.cardAdded(transactionId) { result ->
+                        backendAdapter.addCardCompleted(transactionId) { result ->
                             token = result.getOrThrow().token
                             lock.countDown()
                         }

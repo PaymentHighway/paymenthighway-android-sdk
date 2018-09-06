@@ -20,10 +20,10 @@ interface BackendAdapterEndpointExample {
     companion object {
         fun create(): BackendAdapterEndpointExample {
             val retrofit = Retrofit.Builder()
-                    .baseUrl("http://54.194.196.206:8081")
-                    .callbackExecutor(Executors.newCachedThreadPool())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
+                            .baseUrl("http://54.194.196.206:8081")
+                            .callbackExecutor(Executors.newCachedThreadPool())
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build()
 
             return retrofit.create(BackendAdapterEndpointExample::class.java);
         }

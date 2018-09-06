@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primaryEditTextColor">#484545</color>
+    <color name="primaryActiveEditTextColor">#000000</color>
+    <color name="errorForegroundColor">#ff8787</color>
+    <color name="errorActiveForegroundColor">#ff0303</color>
+
+    <color name="hintColor">#d9d3d3</color>
+    <color name="floatingLabel">#1c6edc</color>
+    <color name="floatingActiveLabel">#0f3a73</color>
+
+</resources>

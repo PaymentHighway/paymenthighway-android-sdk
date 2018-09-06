@@ -12,7 +12,7 @@ class BackendAdapterExample: BackendAdapter<TransactionToken> {
         api.enqueue(CallbackResult<TransactionId>(completion))
     }
 
-    override fun cardAdded(transactionId: TransactionId, completion: (Result<TransactionToken, Exception>) -> Unit) {
+    override fun addCardCompleted(transactionId: TransactionId, completion: (Result<TransactionToken, Exception>) -> Unit) {
         val api = BackendAdapterEndpointExample.create().tokenizeTransaction(transactionId)
         api.enqueue(CallbackResult<TransactionToken>(completion))
     }

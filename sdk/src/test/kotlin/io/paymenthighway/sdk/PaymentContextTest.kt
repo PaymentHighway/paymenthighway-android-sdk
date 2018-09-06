@@ -14,7 +14,6 @@ import java.util.*
 import kotlin.concurrent.schedule
 import okhttp3.mockwebserver.MockWebServer
 
-
 val transactionIdTest = TransactionId("111222333444555666777888999000")
 val creditCardNumber = "5422 3333 4444 5555"
 val cvcTest = "123"
@@ -36,7 +35,7 @@ class BackendAdapterMock(val transactionIdResult: Result<TransactionId, Exceptio
         }
     }
 
-    override fun cardAdded(transactionId: TransactionId, completion: (Result<String, Exception>) -> Unit) {
+    override fun addCardCompleted(transactionId: TransactionId, completion: (Result<String, Exception>) -> Unit) {
         Timer().schedule(100){
             completion(cardAddedResult)
         }
@@ -167,7 +166,7 @@ internal class PaymentContextTest : BaseTest() {
     }
 
     @Test
-    fun testaddCardOK() {
+    fun testAddCardOK() {
 
         val paymentContext = PaymentContext(paymentConfig, BackendAdapterMock())
         server.enqueue(transactionKeyResponse())

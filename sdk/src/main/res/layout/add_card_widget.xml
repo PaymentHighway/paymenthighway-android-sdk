@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_layout_card_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/label_card_number"
+        android:layout_marginTop="12dp"
+        android:theme="@style/TextInputLayoutStyle"
+        >
+
+        <io.paymenthighway.sdk.ui.CardNumberEditText
+            android:id="@+id/edit_text_card_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="@string/valid_digits"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:nextFocusDown="@+id/edit_text_expiry_date"
+            android:nextFocusForward="@+id/edit_text_expiry_date"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/second_row_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        >
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_layout_expiry_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:hint="@string/label_expiry_date"
+            android:theme="@style/TextInputLayoutStyle"
+            >
+
+            <io.paymenthighway.sdk.ui.ExpiryDateEditText
+                android:id="@+id/edit_text_expiry_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="date"
+                android:maxLength="5"
+                android:nextFocusDown="@+id/edit_text_security_code"
+                android:nextFocusForward="@+id/edit_text_security_code"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_layout_security_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:hint="@string/label_security_code"
+            android:theme="@style/TextInputLayoutStyle"
+            >
+
+            <io.paymenthighway.sdk.ui.SecurityCodeEditText
+                android:id="@+id/edit_text_security_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="@string/valid_digits"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+</merge>
+

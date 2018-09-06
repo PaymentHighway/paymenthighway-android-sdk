@@ -7,6 +7,6 @@ interface BackendAdapter<V> {
 
     fun getTransactionId(completion: (Result<TransactionId, Exception>) -> Unit)
 
-    fun cardAdded(transactionId: TransactionId, completion: (Result<V, Exception>) -> Unit)
+    fun addCardCompleted(transactionId: TransactionId, completion: (Result<V, Exception>) -> Unit)
 
 }

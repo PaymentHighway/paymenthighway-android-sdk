@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Payment Highway sdk</string>
+    <string name="title_activity_add_card">AddCardActivity</string>
+    <string name="label_card_number">Card Number</string>
+    <string name="label_expiry_date">Expiry date</string>
+    <string name="label_security_code">Security code</string>
 </resources>
