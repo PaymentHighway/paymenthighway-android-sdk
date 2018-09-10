@@ -35,12 +35,12 @@ internal class PaymentHighwayServiceTest: BaseTest()  {
     }
 
     @Test
-    fun testReceiveTransactionKey() {
+    fun testReceiveEncryptionKey() {
         var key: String = ""
 
         backendAdapter.getTransactionId { result ->
             val transactionId = result.getOrThrow()
-            service.transactionKey(transactionId) { result ->
+            service.encryptionKey(transactionId) { result ->
                 key = result.getOrThrow().key
                 lock.countDown()
             }
@@ -55,9 +55,9 @@ internal class PaymentHighwayServiceTest: BaseTest()  {
         var resultCode: Int = 0
         backendAdapter.getTransactionId { result ->
             val transactionId = result.getOrThrow()
-            service.transactionKey(transactionId) { result ->
-                val transactionKey = result.getOrThrow()
-                service.tokenizeTransaction(transactionId, cardTest, transactionKey) { result ->
+            service.encryptionKey(transactionId) { result ->
+                val encryptionKey = result.getOrThrow()
+                service.tokenizeTransaction(transactionId, cardTest, encryptionKey) { result ->
                     resultCode = result.getOrThrow().result.code
                     lock.countDown()
                 }
@@ -73,9 +73,9 @@ internal class PaymentHighwayServiceTest: BaseTest()  {
         var token: String = ""
         backendAdapter.getTransactionId { result ->
             val transactionId = result.getOrThrow()
-            service.transactionKey(transactionId) { result ->
-                val transactionKey = result.getOrThrow()
-                service.tokenizeTransaction(transactionId, cardTest, transactionKey) { result ->
+            service.encryptionKey(transactionId) { result ->
+                val encryptionKey = result.getOrThrow()
+                service.tokenizeTransaction(transactionId, cardTest, encryptionKey) { result ->
                     if (result.getOrThrow().result.code == ApiResult.OK) {
                         backendAdapter.addCardCompleted(transactionId) { result ->
                             token = result.getOrThrow().token

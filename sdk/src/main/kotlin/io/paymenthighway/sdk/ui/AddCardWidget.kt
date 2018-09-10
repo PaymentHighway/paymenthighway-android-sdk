@@ -51,27 +51,6 @@ class AddCardWidget: LinearLayout, ValidationListener {
 
         mCardNumberEditText = findViewById(R.id.edit_text_card_number)
         mCardNumberTextLayout = findViewById(R.id.text_layout_card_number)
-//        mCardNumberTextLayout.setHintTextAppearance(R.style.TextInputLayoutInactive)
-//        mCardNumberEditText.setHintTextColor(ContextCompat.getColor(context, R.color.testColor1))
-//        mCardNumberTextLayout.boxBackgroundColor =  ContextCompat.getColor(context, R.color.testColor1)
-//        mCardNumberTextLayout.boxStrokeColor =  ContextCompat.getColor(context, R.color.testColor2)
-//
-//        //val colorStateList = mCardNumberTextLayout.defaultHintTextColor
-//        val colorStateList = ColorStateList(
-//                arrayOf(intArrayOf(-android.R.attr.state_checked),
-//                        intArrayOf(android.R.attr.state_checked),
-//                        intArrayOf(-android.R.attr.state_activated),
-//                        intArrayOf(android.R.attr.state_activated)
-//                ),
-//                intArrayOf( ContextCompat.getColor(context, R.color.testColor3),  ContextCompat.getColor(context, R.color.testColor1), ContextCompat.getColor(context, R.color.testColor4),  ContextCompat.getColor(context, R.color.testColor2))
-//        )
-       // mCardNumberTextLayout.defaultHintTextColor =  colorStateList
-        //mCardNumberTextLayout.setHelperTextColor(colorStateList)
-        //val colorList = mCardNumberEditText.getHintTextColors()
-        //println("------->COLORLIST $colorList")
-        //mCardNumberEditText.setHintTextColor(ContextCompat.getColor(context, R.color.testColor3))
-        // mCardNumberEditText.getBackground().mutate().setColorFilter(ContextCompat.getColor(context, R.color.testColor2), android.graphics.PorterDuff.Mode.MULTIPLY)
-        //mCardNumberEditText.setBackgroundColor(ContextCompat.getColor(context, R.color.testColor2))
 
         mExpiryDateEditText = findViewById(R.id.edit_text_expiry_date)
         mSecurityCodeEditText = findViewById(R.id.edit_text_security_code)
@@ -84,8 +63,6 @@ class AddCardWidget: LinearLayout, ValidationListener {
 
     override fun isValidDidChange(isValid: Boolean) {
         addCardWidgetValidationListener?.isValidDidChange(this.isValid)
-        println("Return all isvalid: ${this.isValid}")
-        println("Return isValid: $isValid")
         if (isValid) setFocusNext()
     }
 
@@ -93,11 +70,5 @@ class AddCardWidget: LinearLayout, ValidationListener {
         val editTexts = arrayOf(mCardNumberEditText, mExpiryDateEditText, mSecurityCodeEditText)
         val notValidTexts = editTexts.filter { !it.isValid }
         if (notValidTexts.size > 0) notValidTexts[0].requestFocus()
-//        else {
-//            println("-------> all are valid!!!!!")
-//            for (text in editTexts) text.clearFocus()
-////            val hasFocusTexts = editTexts.filter { it.hasFocus() }
-////            if (hasFocusTexts.size > 0) hasFocusTexts[0].clearFocus()
-//        }
     }
 }

@@ -23,16 +23,16 @@ class PaymentContext<V>(config: PaymentConfig, private val backendAdapter: Backe
     }
 
     private fun getTransactionIdHandler(transactionId: TransactionId, card: CardData, completion: (Result<V, Exception>) -> Unit ) {
-        service.transactionKey(transactionId) { result ->
+        service.encryptionKey(transactionId) { result ->
             when (result) {
-                is Result.Success -> getTransactionKeyHandler(result.value, transactionId, card, completion)
+                is Result.Success -> getEncryptionKeyHandler(result.value, transactionId, card, completion)
                 is Result.Failure -> completion(Result.failure(result.error))
             }
         }
     }
 
-    private fun getTransactionKeyHandler(transactionKey: TransactionKey, transactionId: TransactionId, card: CardData, completion: (Result<V, Exception>) -> Unit ) {
-        service.tokenizeTransaction(transactionId, card, transactionKey) { result ->
+    private fun getEncryptionKeyHandler(encryptionKey: EncryptionKey, transactionId: TransactionId, card: CardData, completion: (Result<V, Exception>) -> Unit ) {
+        service.tokenizeTransaction(transactionId, card, encryptionKey) { result ->
             when (result) {
                 is Result.Success -> {
                     val apiResult = result.value
@@ -40,8 +40,7 @@ class PaymentContext<V>(config: PaymentConfig, private val backendAdapter: Backe
                         backendAdapter.addCardCompleted(transactionId, completion)
                     }
                     else {
-                        val myres: Result<V, Exception> = Result.failure(InternalErrorException(apiResult.result.code, apiResult.result.message))
-                        completion(myres)
+                        completion(Result.failure(InternalErrorException(apiResult.result.code, apiResult.result.message)))
                     }
                 }
                 is Result.Failure -> completion(Result.failure(result.error))

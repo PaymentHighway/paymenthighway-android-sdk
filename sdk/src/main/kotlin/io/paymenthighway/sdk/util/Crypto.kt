@@ -6,7 +6,7 @@ import com.google.gson.Gson
 import io.paymenthighway.sdk.model.CardData
 import io.paymenthighway.sdk.model.TokenizeData
 import io.paymenthighway.sdk.model.TokenizeDataKey
-import io.paymenthighway.sdk.model.TransactionKey
+import io.paymenthighway.sdk.model.EncryptionKey
 import java.io.ByteArrayInputStream
 import java.security.SecureRandom
 import java.security.cert.CertificateFactory
@@ -21,7 +21,7 @@ private val aesCbcPkcs7paddingAlgorithm = "AES/CBC/PKCS7Padding"
 
 private data class CardDataCrypt(val expiry_month: String, val expiry_year: String, val cvc: String, val pan: String)
 
-internal fun tokenizeCardData(cardData: CardData, transactionKey: TransactionKey): Result<TokenizeData, Exception> {
+internal fun tokenizeCardData(cardData: CardData, encryptionKey: EncryptionKey): Result<TokenizeData, Exception> {
     try {
         val aesCipher = Cipher.getInstance(aesCbcPkcs7paddingAlgorithm)
         val secureRandom = SecureRandom()
@@ -37,7 +37,7 @@ internal fun tokenizeCardData(cardData: CardData, transactionKey: TransactionKey
         val json = Gson().toJson(cardDataCrypt)
         val encryptedData = aesCipher.doFinal(json.toByteArray(charset("UTF-8")))
         val fac = CertificateFactory.getInstance("X509")
-        val keyBase64 = Base64.decode(transactionKey.key, Base64.DEFAULT)
+        val keyBase64 = Base64.decode(encryptionKey.key, Base64.DEFAULT)
         val inputStream = ByteArrayInputStream(keyBase64)
         val cert = fac.generateCertificate(inputStream) as X509Certificate
 

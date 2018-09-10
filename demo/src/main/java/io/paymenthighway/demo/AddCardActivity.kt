@@ -46,13 +46,15 @@ class AddCardActivity : AppCompatActivity(), ValidationListener {
             }
             progressBarVisible(true)
             mPaymentContext.addCard(cardData) {result ->
-                progressBarVisible(false)
-                when (result) {
-                    is Result.Success -> {
-                        finish()
-                    }
-                    is Result.Failure -> {
-                        Snackbar.make(view, result.error.message ?: "Error in adding card!", Snackbar.LENGTH_LONG).show()
+                runOnUiThread {
+                    progressBarVisible(false)
+                    when (result) {
+                        is Result.Success -> {
+                            finish()
+                        }
+                        is Result.Failure -> {
+                            Snackbar.make(view, result.error.message ?: "Error in adding card!", Snackbar.LENGTH_LONG).show()
+                        }
                     }
                 }
             }
