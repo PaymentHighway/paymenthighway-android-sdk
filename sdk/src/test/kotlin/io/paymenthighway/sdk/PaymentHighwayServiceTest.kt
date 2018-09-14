@@ -12,7 +12,7 @@ internal class PaymentHighwayServiceTest: BaseTest()  {
 
     val merchantId = MerchantId("test_merchantId")
     val accountId = AccountId("test")
-    val cardTest = CardData("4153013999700024", "024", ExpirationDate("11", "2023"))
+    val cardTest = CardData("4153013999700024", "024", ExpiryDate("11", "2023"))
 
     lateinit var backendAdapter: BackendAdapterExample
     lateinit var service: PaymentHighwayService

@@ -3,18 +3,23 @@ package io.paymenthighway.sdk.ui
 import android.content.Context
 import android.graphics.Rect
 import android.support.design.widget.TextInputEditText
+import android.support.design.widget.TextInputLayout
 import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import io.paymenthighway.sdk.R
 import io.paymenthighway.sdk.R.color.*
 
-open class EditText : TextInputEditText { //, View.OnFocusChangeListener {
+open class EditText : TextInputEditText {
 
     var format: (String) -> String = { it }
     var validate: (String) -> Boolean = { false }
     var editTextValidationListener: ValidationListener? = null
     var hintText: String? = null
+
+    var textLayout: TextInputLayout? = null
+    var errorText: String? = null
 
     var isValid: Boolean = false
         set(value: Boolean) {
@@ -29,8 +34,6 @@ open class EditText : TextInputEditText { //, View.OnFocusChangeListener {
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
     init {
-        setHintTextColor(ContextCompat.getColor(context, hintColor))
-        setTextColor(false, false)
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 //no action
@@ -41,36 +44,43 @@ open class EditText : TextInputEditText { //, View.OnFocusChangeListener {
             }
 
             override fun afterTextChanged(s: Editable) {
+                resetError()
                 val formatted = format(s.toString())
                 if (formatted != s.toString()) {
                     setText(formatted)
                     setSelection(formatted.length)
                 }
-                val vv = validate(formatted)
+
                 if (validate(formatted) != isValid) {
                     isValid = !isValid
-                    setTextColor(isValid, hasFocus())
                 }
             }
         })
     }
 
+    private fun resetError() {
+        textLayout?.isErrorEnabled = false
+        textLayout?.error = null
+    }
 
-    override fun onFocusChanged(focused: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
-        super.onFocusChanged(focused, direction, previouslyFocusedRect)
-        setTextColor(isValid, focused)
-        if (hintText != null) {
-            setHint(if (focused) hintText else "")
+    private var showError: Boolean = false
+        get() {
+            if (text == null || text!!.length == 0 ) return false
+            return !isValid
+        }
+
+    private fun checkIfError() {
+        if (showError) {
+            textLayout?.isErrorEnabled = true
+            textLayout?.error = errorText
         }
     }
 
-    fun setTextColor(isValid: Boolean, isActive: Boolean) {
-        var newColor: Int
-        if (isValid) {
-            newColor = if (isActive) primaryActiveEditTextColor else primaryEditTextColor
-        } else {
-            newColor = if (isActive) errorActiveForegroundColor else errorForegroundColor
+    override fun onFocusChanged(focused: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
+        super.onFocusChanged(focused, direction, previouslyFocusedRect)
+        if (hintText != null) {
+            setHint(if (focused) hintText else "")
         }
-        setTextColor(ContextCompat.getColor(context, newColor))
+        checkIfError()
     }
 }

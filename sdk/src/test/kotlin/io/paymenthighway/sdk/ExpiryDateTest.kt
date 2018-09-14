@@ -1,10 +1,10 @@
 package io.paymenthighway.sdk
 
-import io.paymenthighway.sdk.model.ExpirationDate
+import io.paymenthighway.sdk.model.ExpiryDate
 import org.junit.Assert
 import org.junit.Test
 
-val expirationDateFormatTest = arrayOf(
+val expiryDateFormatTest = arrayOf(
     Triple("" , "", false),
     Triple("0" , "0", false),
     Triple("00" , "0", false),
@@ -24,7 +24,7 @@ val expirationDateFormatTest = arrayOf(
     Triple("aas/df1" , "1", false)
 )
 
-val expirationDateValidTest = arrayOf(
+val expiryDateValidTest = arrayOf(
     Pair("", false),
     Pair("11/", false),
     Pair("/23", false),
@@ -33,7 +33,7 @@ val expirationDateValidTest = arrayOf(
     Pair("12/29", true)
 )
 
-val expirationDateFromStringTest = arrayOf(
+val expiryDateFromStringTest = arrayOf(
     Triple("1/1", "01", "2001"),
     Triple("1/-20", null, null),
     Triple("13/20", null, null),
@@ -41,28 +41,28 @@ val expirationDateFromStringTest = arrayOf(
     Triple("12/2012", "12", "2012")
 )
 
-internal class ExpirationDateTest {
+internal class ExpiryDateTest {
 
     @Test
     fun testFormat() {
-        for ((expirationDate, expectedExpirationDate, deleting) in expirationDateFormatTest) {
-            val result = ExpirationDate.format(expirationDate, deleting)
-            Assert.assertEquals(expectedExpirationDate, result)
+        for ((expiryDate, expectedExpiryDate, deleting) in expiryDateFormatTest) {
+            val result = ExpiryDate.format(expiryDate, deleting)
+            Assert.assertEquals(expectedExpiryDate, result)
         }
     }
 
     @Test
     fun testIsValid() {
-        for ((expirationDate, expectedIsValid) in expirationDateValidTest) {
-            val isValid = ExpirationDate.isValid(expirationDate)
+        for ((expiryDate, expectedIsValid) in expiryDateValidTest) {
+            val isValid = ExpiryDate.isValid(expiryDate)
             Assert.assertEquals(expectedIsValid, isValid)
         }
     }
 
     @Test
     fun testFromString() {
-        for ((expirationDate, expectedMonth, expectedYear) in expirationDateFromStringTest) {
-            val result = ExpirationDate.fromString(expirationDate)
+        for ((expiryDate, expectedMonth, expectedYear) in expiryDateFromStringTest) {
+            val result = ExpiryDate.fromString(expiryDate)
             if (result == null) {
                 Assert.assertEquals(expectedMonth, result)
             } else {

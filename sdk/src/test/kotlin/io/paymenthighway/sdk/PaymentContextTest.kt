@@ -17,8 +17,8 @@ import okhttp3.mockwebserver.MockWebServer
 val transactionIdTest = TransactionId("111222333444555666777888999000")
 val creditCardNumber = "5422 3333 4444 5555"
 val cvcTest = "123"
-val expirationDataTest = ExpirationDate("11", "22")
-val cardDataTest = CardData(creditCardNumber, cvcTest, expirationDataTest)
+val expiryDateTest = ExpiryDate("11", "22")
+val cardDataTest = CardData(creditCardNumber, cvcTest, expiryDateTest)
 val merchantIdTest = MerchantId("1234567890")
 val accountIdTest = AccountId("0987654321")
 val paymentConfig = PaymentConfig(merchantIdTest, accountIdTest)

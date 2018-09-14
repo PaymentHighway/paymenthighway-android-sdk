@@ -4,10 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.KeyEvent
 import android.view.View
-import io.paymenthighway.sdk.CardBrand
 import io.paymenthighway.sdk.R
-import io.paymenthighway.sdk.model.CardData
-import io.paymenthighway.sdk.model.ExpirationDate
+import io.paymenthighway.sdk.model.ExpiryDate
 
 class ExpiryDateEditText : EditText {
 
@@ -21,9 +19,10 @@ class ExpiryDateEditText : EditText {
 
     init {
         hintText = resources.getString(R.string.expiry_date_hint)
-        format = { ExpirationDate.format(it, lastKeyDel) }
-        validate = { ExpirationDate.isValid(it) }
-        setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        errorText = resources.getString(R.string.error_expiry_date)
+        format = { ExpiryDate.format(it, lastKeyDel) }
+        validate = { ExpiryDate.isValid(it) }
+        setOnKeyListener(View.OnKeyListener { _, keyCode, _ ->
             lastKeyDel = if (keyCode == KeyEvent.KEYCODE_DEL) true else false;
             false
         })

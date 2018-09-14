@@ -5,7 +5,7 @@ import io.paymenthighway.sdk.util.decimalDigits
 
 private val Char.asInt: Int get() = this - '0'
 
-data class CardData(val pan: String, val cvc: String, val expirationDate: ExpirationDate) {
+data class CardData(val pan: String, val cvc: String, val expiryDate: ExpiryDate) {
     companion object {
 
         fun isCardNumberValid(cardNumber: String): Boolean {
@@ -49,12 +49,19 @@ data class CardData(val pan: String, val cvc: String, val expirationDate: Expira
             return cardBrand.cvcLength.contains(securityCode.decimalDigits.length)
         }
 
-        fun formatSecurityCode(securityCode: String): String {
+        fun formatSecurityCode(securityCode: String, cardBrand: CardBrand?): String {
             val securityCodeDigits = securityCode.decimalDigits
-            return when (securityCodeDigits.length) {
-                in 0..4 -> securityCodeDigits
-                5 -> securityCodeDigits.removeRange(4, 5)
-                else -> ""
+            if (cardBrand == null) {
+                return when (securityCodeDigits.length) {
+                    in 0..4 -> securityCodeDigits
+                    5 -> securityCodeDigits.removeRange(4, 5)
+                    else -> ""
+                }
+            } else {
+                return when {
+                    securityCodeDigits.length <= cardBrand.cvcLength.max()!! -> securityCodeDigits
+                    else -> securityCodeDigits.removeRange(cardBrand.cvcLength.max()!!,  securityCodeDigits.length)
+                }
             }
         }
     }

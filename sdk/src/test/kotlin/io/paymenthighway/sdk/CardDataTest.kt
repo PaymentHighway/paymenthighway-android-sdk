@@ -28,6 +28,15 @@ val securityCodeFormats = arrayOf(
     Pair(" 1 43 / 2k k nkm", "1432")
 )
 
+val securityCodeFormatsMastercard = arrayOf(
+    Pair("", ""),
+    Pair("1", "1"),
+    Pair("12", "12"),
+    Pair("123", "123"),
+    Pair("1234", "123"),
+    Pair("12345", "123")
+)
+
 internal class CardDataTest {
 
     @Test
@@ -84,9 +93,17 @@ internal class CardDataTest {
     }
 
     @Test
-    fun testFormatSecurityCOde() {
+    fun testFormatSecurityCode() {
         for ((securityCode, expectedSecurityCode) in securityCodeFormats) {
-            Assert.assertEquals(expectedSecurityCode, CardData.formatSecurityCode(securityCode))
+            Assert.assertEquals(expectedSecurityCode, CardData.formatSecurityCode(securityCode, null))
         }
     }
+
+    @Test
+    fun testFormatSecurityCodeMastercard() {
+        for ((securityCode, expectedSecurityCode) in securityCodeFormatsMastercard) {
+            Assert.assertEquals(expectedSecurityCode, CardData.formatSecurityCode(securityCode, CardBrand.mastercard))
+        }
+    }
+
 }

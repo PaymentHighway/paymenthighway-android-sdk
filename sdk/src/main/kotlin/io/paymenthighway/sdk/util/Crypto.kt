@@ -33,7 +33,7 @@ internal fun tokenizeCardData(cardData: CardData, encryptionKey: EncryptionKey):
         val ivSpec = IvParameterSpec(iv)
         aesCipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec)
 
-        val cardDataCrypt = CardDataCrypt(cardData.expirationDate.month, cardData.expirationDate.year, cardData.cvc, cardData.pan)
+        val cardDataCrypt = CardDataCrypt(cardData.expiryDate.month, cardData.expiryDate.year, cardData.cvc, cardData.pan)
         val json = Gson().toJson(cardDataCrypt)
         val encryptedData = aesCipher.doFinal(json.toByteArray(charset("UTF-8")))
         val fac = CertificateFactory.getInstance("X509")
