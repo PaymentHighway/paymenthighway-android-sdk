@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'org.jetbrains.dokka'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -69,4 +71,42 @@ dependencies {
 
 repositories {
     mavenCentral()
+}
+
+dokka {
+    // includes = ['README.md']
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+
+    includeNonPublic = false
+    reportUndocumented = false
+
+    skipEmptyPackages = true
+
+    noStdlibLink = false
+
+    sourceDirs = files('src/main/kotlin')
+
+    linkMapping {
+        dir = "src/main/kotlin/"
+        url = "https://github.com/PaymentHighway"
+        suffix = "#L"
+    }
+
+    packageOptions {
+        prefix = "io.paymenthighway.sdk"
+        skipDeprecated = false
+        reportUndocumented = true
+        includeNonPublic = false
+    }
+
+    packageOptions {
+        prefix = "android"
+        suppress = true
+    }
+
+    packageOptions {
+        prefix = "androidx"
+        suppress = true
+    }
 }

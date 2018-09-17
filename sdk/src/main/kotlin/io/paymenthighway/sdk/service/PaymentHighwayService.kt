@@ -30,11 +30,14 @@ internal class PaymentHighwayService(val merchantId: MerchantId, val accountId: 
             completion: (Result<ApiResult, Exception>) -> Unit) {
 
         val tokenizeCardDataResult = tokenizeCardData(cardData, encryptionKey)
-        val tokenizeCardData = try { tokenizeCardDataResult.getOrThrow() } catch (exception: Exception) {  completion(Result.failure(tokenizeCardDataResult.getRawError()!!))
-            return
+        when (tokenizeCardDataResult){
+            is Result.Success -> {
+                val api = PaymentHighwayEndpoint.create(merchantId, accountId).tokenizeTransaction(transactionId, tokenizeCardDataResult.value)
+                api.enqueue(CallbackResult(completion))
+            }
+            is Result.Failure -> {
+                completion(Result.failure(tokenizeCardDataResult.error))
+            }
         }
-
-        val api = PaymentHighwayEndpoint.create(merchantId, accountId).tokenizeTransaction(transactionId, tokenizeCardData)
-        api.enqueue(CallbackResult(completion))
     }
 }

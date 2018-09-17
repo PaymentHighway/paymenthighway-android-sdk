@@ -7,16 +7,37 @@ import android.view.View
 import io.paymenthighway.sdk.R
 import io.paymenthighway.sdk.model.ExpiryDate
 
+/**
+ * Expiry Date edit text
+ */
 class ExpiryDateEditText : EditText {
 
+    /**
+     * The expiry date formatter need to know if the last key has been a <del>
+     */
     private var lastKeyDel = false
 
+    /**
+     * TextInputEditText constructor
+     */
     constructor(context: Context?) : super(context) {}
 
+    /**
+     * TextInputEditText constructor
+     */
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {}
 
+    /**
+     * TextInputEditText constructor
+     */
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
+    /**
+     * Initialize the EditText with specific formatter, validator and hint and error texts
+     *
+     * @see ExpiryDate.format
+     * @see ExpiryDate.isValid
+     */
     init {
         hintText = resources.getString(R.string.expiry_date_hint)
         errorText = resources.getString(R.string.error_expiry_date)

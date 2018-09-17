@@ -11,7 +11,7 @@
         android:hint="@string/label_card_number"
         android:layout_marginTop="12dp"
         android:theme="@style/PHTextInputLayoutStyle"
-        app:errorTextAppearance="@style/PHErrorAppearance"
+        app:errorTextAppearance="@style/PHErrorAppearanceStyle"
         >
 
         <io.paymenthighway.sdk.ui.CardNumberEditText
@@ -23,6 +23,7 @@
             android:inputType="number"
             android:nextFocusDown="@+id/edit_text_expiry_date"
             android:nextFocusForward="@+id/edit_text_expiry_date"
+            android:theme="@style/PHEditTextStyle"
             />
 
     </android.support.design.widget.TextInputLayout>
@@ -45,7 +46,7 @@
             android:layout_weight="1"
             android:hint="@string/label_expiry_date"
             android:theme="@style/PHTextInputLayoutStyle"
-            app:errorTextAppearance="@style/PHErrorAppearance"
+            app:errorTextAppearance="@style/PHErrorAppearanceStyle"
             >
 
             <io.paymenthighway.sdk.ui.ExpiryDateEditText
@@ -57,6 +58,7 @@
                 android:maxLength="5"
                 android:nextFocusDown="@+id/edit_text_security_code"
                 android:nextFocusForward="@+id/edit_text_security_code"
+                android:theme="@style/PHEditTextStyle"
                 />
 
         </android.support.design.widget.TextInputLayout>
@@ -70,7 +72,7 @@
             android:layout_weight="1"
             android:hint="@string/label_security_code"
             android:theme="@style/PHTextInputLayoutStyle"
-            app:errorTextAppearance="@style/PHErrorAppearance"
+            app:errorTextAppearance="@style/PHErrorAppearanceStyle"
             >
 
             <io.paymenthighway.sdk.ui.SecurityCodeEditText
@@ -80,6 +82,7 @@
                 android:digits="@string/valid_digits"
                 android:imeOptions="actionNext"
                 android:inputType="number"
+                android:theme="@style/PHEditTextStyle"
                 />
 
         </android.support.design.widget.TextInputLayout>

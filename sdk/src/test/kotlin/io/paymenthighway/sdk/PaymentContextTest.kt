@@ -97,7 +97,7 @@ internal class PaymentContextTest : BaseTest() {
 
         paymentContext.addCard(cardDataTest) {result ->
             if (result.isError) {
-                receivedException = result.getRawError()
+                receivedException = result.getErrorOrNull()
                 lock.countDown()
             }
         }
@@ -115,7 +115,7 @@ internal class PaymentContextTest : BaseTest() {
 
         paymentContext.addCard(cardDataTest) {result ->
             if (result.isError) {
-                receivedException = result.getRawError()
+                receivedException = result.getErrorOrNull()
                 lock.countDown()
             }
         }
@@ -134,7 +134,7 @@ internal class PaymentContextTest : BaseTest() {
 
         paymentContext.addCard(cardDataTest) {result ->
             if (result.isError) {
-                receivedException = result.getRawError()
+                receivedException = result.getErrorOrNull()
                 lock.countDown()
             }
         }
@@ -155,7 +155,7 @@ internal class PaymentContextTest : BaseTest() {
 
         paymentContext.addCard(cardDataTest) {result ->
             if (result.isError) {
-                receivedException = result.getRawError()
+                receivedException = result.getErrorOrNull()
                 lock.countDown()
             }
         }
@@ -174,7 +174,7 @@ internal class PaymentContextTest : BaseTest() {
 
         paymentContext.addCard(cardDataTest) {result ->
             if (result.isValue) {
-                tokenReceived = result.getRawValue()
+                tokenReceived = result.getValueOrNull()
                 lock.countDown()
             }
         }

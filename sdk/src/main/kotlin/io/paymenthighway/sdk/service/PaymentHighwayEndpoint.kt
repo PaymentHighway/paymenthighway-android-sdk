@@ -19,7 +19,9 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 
-// From server we can get either the ApiResult either the EncryptionKey
+/**
+ * From server we can get either the ApiResult either the EncryptionKey
+ */
 internal data class EncryptionKeyResult(val result: ApiResultInfo? = null, val key: String? = null)
 
 internal interface PaymentHighwayEndpoint {

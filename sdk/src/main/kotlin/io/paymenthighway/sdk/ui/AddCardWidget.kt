@@ -12,14 +12,48 @@ import io.paymenthighway.sdk.model.CardData
 import io.paymenthighway.sdk.model.ExpiryDate
 import io.paymenthighway.sdk.util.decimalDigits
 
+/**
+ * Add Card Widget
+ *
+ * You can include this widget in any or your view's layout.
+ * This permit the user to input credit card number, expiry date and security code
+ *
+ * ```
+ *  import io.paymenthighway.sdk.ui.AddCardWidget
+ *
+ *
+ *  internal lateinit var mCardInputWidget: AddCardWidget
+ *
+ *  mCardInputWidget = findViewById<AddCardWidget>(R.id.add_card_widget)
+ *
+ *  @see AddCardActivity in the demo example
+ * ```
+ */
 class AddCardWidget: LinearLayout, ValidationListener {
 
+    /**
+     * Card number edit text
+     */
     val mCardNumberEditText: CardNumberEditText
+
+    /**
+     * Expiry date edit text
+     */
     val mExpiryDateEditText: ExpiryDateEditText
+
+    /**
+     * Security code edit text
+     */
     val mSecurityCodeEditText: SecurityCodeEditText
 
+    /**
+     * Can be set to listen when the the card info are valid
+     */
     var addCardWidgetValidationListener: ValidationListener? = null
 
+    /**
+     * Returns true is all the card info are valid
+     */
     var isValid: Boolean = false
         get() {
             return mCardNumberEditText.isValid &&
@@ -27,6 +61,9 @@ class AddCardWidget: LinearLayout, ValidationListener {
                     mSecurityCodeEditText.isValid
         }
 
+    /**
+     * return the CardData if available and valid otherwise null
+     */
     var card: CardData? = null
         get() {
             val pan = mCardNumberEditText.text?.toString() ?: return null
@@ -36,10 +73,19 @@ class AddCardWidget: LinearLayout, ValidationListener {
             return CardData(pan.decimalDigits, cvc.decimalDigits, expiryDate)
         }
 
+    /**
+     * LinearLayout constructor
+     */
     constructor(context: Context?) : super(context) {}
 
+    /**
+     * LinearLayout constructor
+     */
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {}
 
+    /**
+     * LinearLayout constructor
+     */
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
     init {

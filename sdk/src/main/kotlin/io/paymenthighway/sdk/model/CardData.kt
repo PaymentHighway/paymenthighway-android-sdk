@@ -5,9 +5,23 @@ import io.paymenthighway.sdk.util.decimalDigits
 
 private val Char.asInt: Int get() = this - '0'
 
+/**
+ * Data class to hold card info
+ *
+ * @param pan The card number
+ * @param cvc The card security code
+ * @param expiryDate The card expiry date
+ */
+
 data class CardData(val pan: String, val cvc: String, val expiryDate: ExpiryDate) {
     companion object {
 
+        /**
+         * Validate a given credit card number using the Luhn algorithm
+         *
+         * @param cardNumber The card number to validate
+         * @return true if the credit card is valid
+         */
         fun isCardNumberValid(cardNumber: String): Boolean {
 
             val cardNumberDigits = cardNumber.decimalDigits
@@ -28,7 +42,12 @@ data class CardData(val pan: String, val cvc: String, val expiryDate: ExpiryDate
             return checksum%10 == 0
         }
 
-
+        /**
+         * Format a given card number to a neat string
+         *
+         * @param cardNumber The card number to format
+         * @return The formatted credit card number properly spaced
+         */
         fun formatCardNumber(cardNumber: String): String {
             val cardNumberDigits = cardNumber.decimalDigits
             val cardBrand = CardBrand.fromCardNumber(cardNumber) ?: return cardNumber
@@ -44,11 +63,24 @@ data class CardData(val pan: String, val cvc: String, val expiryDate: ExpiryDate
             return list.joinToString(" ")
         }
 
+        /**
+         * Validate a given security code
+         * Need the card brand to understand the lenght of the security code
+         *
+         * @param securityCode The security code to validate
+         * @return true if the security code is valid
+         */
         fun isSecurityCodeValid(securityCode: String, cardBrand: CardBrand?): Boolean {
             if (cardBrand == null) return false
             return cardBrand.cvcLength.contains(securityCode.decimalDigits.length)
         }
 
+        /**
+         * Format a given security code
+         *
+         * @param securityCode The security code to format
+         * @return The formatted security code
+         */
         fun formatSecurityCode(securityCode: String, cardBrand: CardBrand?): String {
             val securityCodeDigits = securityCode.decimalDigits
             if (cardBrand == null) {

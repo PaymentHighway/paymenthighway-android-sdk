@@ -11,26 +11,75 @@ import android.util.AttributeSet
 import io.paymenthighway.sdk.R
 import io.paymenthighway.sdk.R.color.*
 
+/**
+ * Base class for the Payment Highway text input ui items
+ */
 open class EditText : TextInputEditText {
 
+    /**
+     * Super class should add own specific lambda for formatting the text
+     *
+     * Default implementation does not do any formatting
+     *
+     * @param text the input text
+     * @result the formatted text
+     *
+     */
     var format: (String) -> String = { it }
+
+    /**
+     * Super class should add own specific lambda for validate the text
+     *
+     * Default implementation return false
+     *
+     * @param text the input text
+     * @result true if the text is valid
+     *
+     */
     var validate: (String) -> Boolean = { false }
+
+    /**
+     * Listener for changing of the validatation state of the text field
+     */
     var editTextValidationListener: ValidationListener? = null
+
+    /**
+     * Hint text
+     */
     var hintText: String? = null
 
+    /**
+     * Parent TextInputLayout
+     */
     var textLayout: TextInputLayout? = null
+
+    /**
+     * Text message shown in case of error
+     */
     var errorText: String? = null
 
+    /**
+     * Return True if the field is valid
+     */
     var isValid: Boolean = false
         set(value: Boolean) {
             field = value
             editTextValidationListener?.isValidDidChange(value)
         }
 
+    /**
+     * TextInputEditText constructor
+     */
     constructor(context: Context?) : super(context) {}
 
+    /**
+     * TextInputEditText constructor
+     */
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {}
 
+    /**
+     * TextInputEditText constructor
+     */
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
     init {
@@ -76,6 +125,9 @@ open class EditText : TextInputEditText {
         }
     }
 
+    /**
+     * When the focus change can be set either the hint text either the error
+     */
     override fun onFocusChanged(focused: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect)
         if (hintText != null) {

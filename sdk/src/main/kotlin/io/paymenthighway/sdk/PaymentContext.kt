@@ -5,6 +5,15 @@ import io.paymenthighway.sdk.model.*
 import io.paymenthighway.sdk.service.PaymentHighwayService
 import io.paymenthighway.sdk.util.Result
 
+/**
+ * PaymentContext manage all the functionality around a payment like addCard
+ *
+ * @param V the type of the BackendAdapter
+ * @constructor Main constructor
+ * @param [config] the configuration for Payment Highway
+ * @param [backendAdapter] provide your BackendAdapter implementation
+ *
+ */
 class PaymentContext<V>(config: PaymentConfig, private val backendAdapter: BackendAdapter<V>) {
 
     private val service: PaymentHighwayService
@@ -13,6 +22,15 @@ class PaymentContext<V>(config: PaymentConfig, private val backendAdapter: Backe
         service = PaymentHighwayService(config.merchantId, config.accountId)
     }
 
+    /**
+     * This add a new Payment Card
+     *
+     * @param card Card to be added
+     * @param completion Callback closure with the result of the operation
+     *
+     * @see Result
+     *
+     */
     fun addCard(card: CardData, completion: (Result<V, Exception>) -> Unit) {
         backendAdapter.getTransactionId { result ->
             when (result) {

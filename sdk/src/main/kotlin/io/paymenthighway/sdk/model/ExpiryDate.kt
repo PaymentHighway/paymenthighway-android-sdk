@@ -4,9 +4,37 @@ import io.paymenthighway.sdk.util.decimalDigits
 import io.paymenthighway.sdk.util.insertAt
 import java.util.Calendar
 
+/**
+ * Data class to hold expiry data
+ *
+ * @param id Actual account id as String
+ * @param month 1-2 numeric chars, accepted 1-12
+ * @param year 1-4 numeric chars. For years <= 999 2000 is added
+ *
+ * You can check if expiry date is valid with isValid
+ *
+ */
 data class ExpiryDate(val month: String, val year: String) {
 
+    /**
+     * Check if the expiry date is valid
+     */
+    val isValid: Boolean
+        get() {
+            return ExpiryDate.isValid("$month/$year")
+        }
+
     companion object {
+
+        /**
+         * Get ExpiryDate from raw expiration date string
+         *
+         * month will formatted as MM
+         * year will formatted as YYYY
+         *
+         * @param expiryDate raw expiration date, format "M[M]/Y[YYY]"
+         * @return ExpiraryDate or null if the expiry date is invalid
+         */
         fun fromString(expiryDate: String) : ExpiryDate?  {
             val monthYear = expiryDateComponents(expiryDate) ?: return null
             val monthString = "%02d".format(monthYear.first)
@@ -14,6 +42,12 @@ data class ExpiryDate(val month: String, val year: String) {
             return ExpiryDate(monthString, yearString)
         }
 
+        /**
+         * Check if expiration date is valid
+         *
+         * @param expiryDate raw expiration date, format "M[M]/Y[YYY]"
+         * @return true if the date is valid
+         */
         fun isValid(expiryDateString: String): Boolean {
             val monthYear = expiryDateComponents(expiryDateString) ?: return false
             // Calendar month from 0-11
@@ -31,6 +65,21 @@ data class ExpiryDate(val month: String, val year: String) {
             return Pair(monthNumber, if (yearNumber <= 999) yearNumber + 2000  else yearNumber)
         }
 
+        /**
+         * Format the expiration date
+         * ```
+         *    example: previous input  user input  formatted
+         *                                2           02/
+         *                0               8           08/
+         *                01/             2           01/2
+         *                08/             <del>       0
+         *                08/2            <del>       08/
+         * ```
+         *
+         * @param expiryDate input expiration date
+         * @param deleting need to know if there has been a delete since format change based on it(check example above)
+         * @return expiry date formatted
+         */
         fun format(expiryDate: String, deleting: Boolean = false): String {
             var onlyDigitsExpiryDate = expiryDate.decimalDigits
             return when (onlyDigitsExpiryDate.length) {
