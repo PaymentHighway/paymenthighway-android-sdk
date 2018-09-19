@@ -1,6 +1,7 @@
 package io.paymenthighway.sdk
 
 import io.paymenthighway.demo.backendadapterexample.BackendAdapterExample
+import io.paymenthighway.demo.backendadapterexample.TransactionCard
 import io.paymenthighway.sdk.model.*
 import io.paymenthighway.sdk.service.PaymentHighwayService
 import org.hamcrest.CoreMatchers
@@ -52,32 +53,34 @@ internal class PaymentHighwayServiceTest: BaseTest()  {
     @Test
     fun testTokenize() {
 
-        var resultCode: Int = 0
+        var success: Boolean = false
         backendAdapter.getTransactionId { result ->
             val transactionId = result.getOrThrow()
             service.encryptionKey(transactionId) { result ->
                 val encryptionKey = result.getOrThrow()
                 service.tokenizeTransaction(transactionId, cardTest, encryptionKey) { result ->
-                    resultCode = result.getOrThrow().result.code
+                    success = result.isSuccess
                     lock.countDown()
                 }
             }
         }
         await()
-        Assert.assertEquals(resultCode, ApiResult.OK)
+        Assert.assertEquals(true,success)
     }
 
     @Test
     fun testGetToken() {
 
         var token: String = ""
+        var card = TransactionCard("","","", "")
         backendAdapter.getTransactionId { result ->
             val transactionId = result.getOrThrow()
             service.encryptionKey(transactionId) { result ->
                 val encryptionKey = result.getOrThrow()
                 service.tokenizeTransaction(transactionId, cardTest, encryptionKey) { result ->
-                    if (result.getOrThrow().result.code == ApiResult.OK) {
+                    if (result.isSuccess) {
                         backendAdapter.addCardCompleted(transactionId) { result ->
+                            card = result.getOrThrow().card
                             token = result.getOrThrow().token
                             lock.countDown()
                         }
@@ -87,6 +90,10 @@ internal class PaymentHighwayServiceTest: BaseTest()  {
         }
         await()
         Assert.assertThat(token, CoreMatchers.containsString("-"))
+        Assert.assertEquals("Visa", card.cardType)
+        Assert.assertEquals("0024", card.partialPan)
+        Assert.assertEquals("11", card.expireMonth)
+        Assert.assertEquals("2023", card.expireYear)
     }
 
 }

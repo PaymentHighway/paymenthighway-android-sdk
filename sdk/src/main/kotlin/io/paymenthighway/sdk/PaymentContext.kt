@@ -6,12 +6,12 @@ import io.paymenthighway.sdk.service.PaymentHighwayService
 import io.paymenthighway.sdk.util.Result
 
 /**
- * PaymentContext manage all the functionality around a payment like addCard
+ * PaymentContext manages all the functionality the payment context, such as adding a new payment card.
  *
  * @param V the type of the BackendAdapter
- * @constructor Main constructor
  * @param [config] the configuration for Payment Highway
  * @param [backendAdapter] provide your BackendAdapter implementation
+ * @constructor Main constructor
  *
  */
 class PaymentContext<V>(config: PaymentConfig, private val backendAdapter: BackendAdapter<V>) {
@@ -23,7 +23,7 @@ class PaymentContext<V>(config: PaymentConfig, private val backendAdapter: Backe
     }
 
     /**
-     * This add a new Payment Card
+     * Adds a new Payment Card
      *
      * @param card Card to be added
      * @param completion Callback closure with the result of the operation
@@ -35,7 +35,7 @@ class PaymentContext<V>(config: PaymentConfig, private val backendAdapter: Backe
         backendAdapter.getTransactionId { result ->
             when (result) {
                 is Result.Success -> getTransactionIdHandler(result.value, card, completion)
-                is Result.Failure -> completion(Result.failure(result.error))
+                is Result.Failure -> completion(result)
             }
         }
     }
@@ -44,7 +44,7 @@ class PaymentContext<V>(config: PaymentConfig, private val backendAdapter: Backe
         service.encryptionKey(transactionId) { result ->
             when (result) {
                 is Result.Success -> getEncryptionKeyHandler(result.value, transactionId, card, completion)
-                is Result.Failure -> completion(Result.failure(result.error))
+                is Result.Failure -> completion(result)
             }
         }
     }
@@ -53,15 +53,9 @@ class PaymentContext<V>(config: PaymentConfig, private val backendAdapter: Backe
         service.tokenizeTransaction(transactionId, card, encryptionKey) { result ->
             when (result) {
                 is Result.Success -> {
-                    val apiResult = result.value
-                    if (apiResult.result.code == ApiResult.OK) {
-                        backendAdapter.addCardCompleted(transactionId, completion)
-                    }
-                    else {
-                        completion(Result.failure(InternalErrorException(apiResult.result.code, apiResult.result.message)))
-                    }
+                    backendAdapter.addCardCompleted(transactionId, completion)
                 }
-                is Result.Failure -> completion(Result.failure(result.error))
+                is Result.Failure -> completion(result)
             }
         }
     }

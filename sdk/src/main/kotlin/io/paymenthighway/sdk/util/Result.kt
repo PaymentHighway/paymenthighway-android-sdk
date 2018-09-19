@@ -3,7 +3,7 @@ package io.paymenthighway.sdk.util
 /**
  * Used to represent whether a sdk operation was successful or encountered an error
  *
- * @param V Type of the value in returned for a successful operation
+ * @param V Type of the value returned for a successful operation
  * @param E Type of the error
  */
 sealed class Result <out V, out E: Exception> {
@@ -16,7 +16,7 @@ sealed class Result <out V, out E: Exception> {
     data class Success<out V>(val value: V) : Result<V, Nothing>()
 
     /**
-     * Operation failed and return a associated Exception
+     * Operation failed and returned an associated Exception
      *
      * @param error exception associated to the failed operation
      */
@@ -41,7 +41,7 @@ sealed class Result <out V, out E: Exception> {
         /**
          * Result built from the result of the function
          *
-         * @param function function return the success value of type V otherwise throws a exception
+         * @param function returns the success value of the type V, otherwise throws an exception
          */
         inline fun <V> of(function: () -> V): Result<V, Exception> {
             return try {
@@ -53,7 +53,7 @@ sealed class Result <out V, out E: Exception> {
     }
 
     /**
-     * Return the associated value of type V if operation were successful otherwise throws the failure exception
+     * Returns the associated value of type V if operation was successful, otherwise throws the failure exception
      */
     @Throws(Exception::class)
     fun getOrThrow(): V {
@@ -64,7 +64,7 @@ sealed class Result <out V, out E: Exception> {
     }
 
     /**
-     * Return the associated value of type V if operation were successful otherwise null
+     * Returns the associated value of type V if operation was successful, otherwise null
      */
     fun getValueOrNull(): V? {
         return when(this) {
@@ -74,7 +74,7 @@ sealed class Result <out V, out E: Exception> {
     }
 
     /**
-     * Return the associated exceprion error of type E if operation encountered a failure otherwise null
+     * Returns the associated exception error of type E if operation encountered a failure, otherwise null
      */
     fun getErrorOrNull(): E? {
         return when(this) {
@@ -84,17 +84,17 @@ sealed class Result <out V, out E: Exception> {
     }
 
     /**
-     * Return true if the result is a success
+     * Returns true if the result is a success
      */
-    val isValue: Boolean
+    val isSuccess: Boolean
         get() = when(this) {
             is Success -> true
             is Failure -> false
         }
 
     /**
-     * Return true if the result is a failure
+     * Returns true if the result is a failure
      */
     val isError: Boolean
-        get() = !isValue
+        get() = !isSuccess
 }

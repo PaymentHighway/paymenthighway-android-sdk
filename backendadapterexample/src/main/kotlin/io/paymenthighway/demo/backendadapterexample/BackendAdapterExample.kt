@@ -1,7 +1,9 @@
 package io.paymenthighway.demo.backendadapterexample
 
 import io.paymenthighway.sdk.BackendAdapter
+import io.paymenthighway.sdk.exception.EmptyDataException
 import io.paymenthighway.sdk.exception.InternalErrorException
+import io.paymenthighway.sdk.exception.InvalidDataException
 import io.paymenthighway.sdk.model.TransactionId
 import io.paymenthighway.sdk.util.CallbackResult
 import io.paymenthighway.sdk.util.CallbackResultConvert
@@ -12,19 +14,15 @@ class BackendAdapterExample: BackendAdapter<TransactionToken> {
 
     override fun getTransactionId(completion: (Result<TransactionId, Exception>) -> Unit) {
         val api = BackendAdapterEndpointExample.create().transactionId()
-        api.enqueue(CallbackResult<TransactionId>(completion))
+        api.enqueue(CallbackResult(completion))
     }
 
     override fun addCardCompleted(transactionId: TransactionId, completion: (Result<TransactionToken, Exception>) -> Unit) {
         val api = BackendAdapterEndpointExample.create().tokenizeTransaction(transactionId)
         api.enqueue(CallbackResultConvert(completion) {
-            if (it.token.isNullOrEmpty()) {
-                Result.failure(InternalErrorException(it.result?.code ?: 0, it.result?.message
-                        ?: "Unknown error"))
-            }
-            else {
-                Result.success(TransactionToken(it.token!!))
-            }
+            val token = it.token?.let { it } ?: return@CallbackResultConvert Result.failure(EmptyDataException())
+            val card = it.card?.let { it } ?: return@CallbackResultConvert Result.failure(EmptyDataException())
+            Result.success(TransactionToken(token, card))
         })
     }
 

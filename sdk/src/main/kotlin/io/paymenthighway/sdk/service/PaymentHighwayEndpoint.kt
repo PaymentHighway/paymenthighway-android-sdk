@@ -19,15 +19,12 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 
-/**
- * From server we can get either the ApiResult either the EncryptionKey
- */
-internal data class EncryptionKeyResult(val result: ApiResultInfo? = null, val key: String? = null)
+internal data class EncryptionKeyApiResult(override val result: ApiResultInfo, val key: String? = null): ApiResultInterface
 
 internal interface PaymentHighwayEndpoint {
 
     @GET("/mobile/{transactionId}/key")
-    fun encryptionKey(@Path("transactionId") transactionId: TransactionId): Call<EncryptionKeyResult>
+    fun encryptionKey(@Path("transactionId") transactionId: TransactionId): Call<EncryptionKeyApiResult>
 
     @POST("/mobile/{transactionId}/tokenize")
     fun tokenizeTransaction(@Path("transactionId") transactionId: TransactionId, @Body tokenizeData: TokenizeData): Call<ApiResult>

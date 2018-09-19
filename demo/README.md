@@ -10,7 +10,7 @@ For more info see the code [here]().
 
 In client side you need to implement the BackendAdapter interface. 
 
-The demo include a implementation example for a `BackendApapter` in the module `backendadapterexample`.
+The demo includes an implementation example for a `BackendAdapter` in the module `backendadapterexample`.
 
 ## Add a credit card
 
@@ -18,7 +18,7 @@ In order to add credit card and get a payment token you need a `PaymentContext`.
 
 PaymentHighway Android SDK (debug) in connected with the [Payment Highway development sandbox](https://dev.paymenthighway.io/#development-sandbox).
 
-Therefore the demo app use the provided sandbox merchant id and account id.
+Therefore the demo app uses the provided sandbox merchant id and account id.
 
 Example how istantiate a `PaymentContext`:
 Kotlin:

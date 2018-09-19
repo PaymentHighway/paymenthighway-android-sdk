@@ -3,6 +3,7 @@ package io.paymenthighway.demo
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
@@ -50,7 +51,18 @@ class AddCardActivity : AppCompatActivity(), ValidationListener {
                     progressBarVisible(false)
                     when (result) {
                         is Result.Success -> {
-                            finish()
+                            val transactionToken = result.value
+                            val message = """
+                                Add Card Completed
+
+                                token: ${transactionToken.token.substring(0,8)}...
+                                brand: ${transactionToken.card.cardType}
+                                last digits:  ${transactionToken.card.partialPan}
+                                expiry date:  ${transactionToken.card.expireMonth}/${transactionToken.card.expireYear}
+                            """.trimIndent()
+                            showAlertDialog("Add card completed", message) {
+                                finish()
+                            }
                         }
                         is Result.Failure -> {
                             Snackbar.make(view, result.error.message ?: "Error in adding card!", Snackbar.LENGTH_LONG).show()
@@ -71,6 +83,17 @@ class AddCardActivity : AppCompatActivity(), ValidationListener {
             val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(currentFocus.windowToken, 0)
         }
+    }
+
+    private fun showAlertDialog(title: String, message: String, completion: () -> Unit) {
+        val builder = AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK") {  _, _ ->
+                    completion()
+                }
+        val dialog = builder.create()
+        dialog.show()
     }
 
     private fun progressBarVisible(visible: Boolean) {

@@ -1,6 +1,7 @@
 package io.paymenthighway.demo.backendadapterexample
 
 import io.paymenthighway.sdk.model.ApiResultInfo
+import io.paymenthighway.sdk.model.ApiResultInterface
 import io.paymenthighway.sdk.model.TransactionId
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -10,8 +11,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import java.util.concurrent.Executors
 
-// From server we can get either the ApiResult either the TransactionToken
-internal data class TransactionTokenResult(val result: ApiResultInfo? = null, val token: String? = null)
+internal data class TransactionTokenApiResult(override val result: ApiResultInfo, val token: String? = null, val card: TransactionCard? = null): ApiResultInterface
 
 internal interface BackendAdapterEndpointExample {
 
@@ -19,7 +19,7 @@ internal interface BackendAdapterEndpointExample {
     fun transactionId(): Call<TransactionId>
 
     @POST("/tokenization/{transactionId}")
-    fun tokenizeTransaction(@Path("transactionId") transactionId: TransactionId): Call<TransactionTokenResult>
+    fun tokenizeTransaction(@Path("transactionId") transactionId: TransactionId): Call<TransactionTokenApiResult>
 
     companion object {
         fun create(): BackendAdapterEndpointExample {

@@ -42,7 +42,7 @@ sealed class CardBrand: CardBrandData {
     object jcb: CardBrand()
 
     /**
-     * Dinners Club card
+     * Diners Club card
      */
     object dinersClub: CardBrand()
 

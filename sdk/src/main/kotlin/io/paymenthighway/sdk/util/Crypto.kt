@@ -51,7 +51,6 @@ internal fun tokenizeCardData(cardData: CardData, encryptionKey: EncryptionKey):
 
         return Result.success(TokenizeData(encryptedBase64Data, TokenizeDataKey(encryptedBase64Key, encryptedBase64Iv)))
     } catch (exception: Exception) {
-        println("tokenizeCardData exception: $exception")
         return Result.failure(exception)
     }
 }

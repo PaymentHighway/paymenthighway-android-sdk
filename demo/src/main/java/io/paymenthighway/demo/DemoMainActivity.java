@@ -51,9 +51,7 @@ public class DemoMainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
                 final String item = (String) parent.getItemAtPosition(position);
-                System.out.println("click on " + item + " position " + position);
                 Action action = Action.values()[position];
-                System.out.println("action " + action.getDescription());
                 switch (action) {
                     case ADD_CARD:
                         Intent intent = new Intent(view.getContext(), AddCardActivity.class);

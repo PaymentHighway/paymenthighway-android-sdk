@@ -6,7 +6,7 @@ package io.paymenthighway.sdk.model
  *
  * @param result Code value and message result
  */
-data class ApiResult(val result: ApiResultInfo) {
+data class ApiResult(override val result: ApiResultInfo): ApiResultInterface {
     companion object {
         /**
          * Code value when the api result is successful
@@ -22,3 +22,7 @@ data class ApiResult(val result: ApiResultInfo) {
  * @param message Error message
  */
 data class ApiResultInfo(val code: Int, val message: String)
+
+interface ApiResultInterface {
+    val result: ApiResultInfo
+}

@@ -6,6 +6,11 @@ package io.paymenthighway.sdk.exception
 class InvalidDataException(message: String) : Exception(message)
 
 /**
+ * Data received from REST api are empty
+ */
+class EmptyDataException() : Exception("Empty data!")
+
+/**
  * Returned when the source of the error is unknown
  */
 class UnknowErrorException(message: String = "") : Exception(message)

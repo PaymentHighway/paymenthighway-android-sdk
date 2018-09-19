@@ -1,5 +1,6 @@
 package io.paymenthighway.sdk.service
 
+import io.paymenthighway.sdk.exception.EmptyDataException
 import io.paymenthighway.sdk.exception.InternalErrorException
 import io.paymenthighway.sdk.model.*
 import io.paymenthighway.sdk.util.CallbackResult
@@ -12,14 +13,8 @@ internal class PaymentHighwayService(val merchantId: MerchantId, val accountId: 
     fun encryptionKey(transactionId: TransactionId, completion: (Result<EncryptionKey, Exception>) -> Unit) {
 
         val api = PaymentHighwayEndpoint.create(merchantId, accountId).encryptionKey(transactionId)
-
         api.enqueue(CallbackResultConvert(completion) {
-            if (it.key.isNullOrEmpty()) {
-                Result.failure(InternalErrorException(it.result?.code ?: 0, it.result?.message ?: "Unknown error"))
-
-            } else {
-                Result.success(EncryptionKey(it.key!!))
-            }
+            it.key?.let { Result.success(EncryptionKey(it)) } ?: run { Result.failure(EmptyDataException()) }
         })
     }
 
@@ -27,13 +22,15 @@ internal class PaymentHighwayService(val merchantId: MerchantId, val accountId: 
             transactionId: TransactionId,
             cardData: CardData,
             encryptionKey: EncryptionKey,
-            completion: (Result<ApiResult, Exception>) -> Unit) {
+            completion: (Result<Unit, Exception>) -> Unit) {
 
         val tokenizeCardDataResult = tokenizeCardData(cardData, encryptionKey)
         when (tokenizeCardDataResult){
             is Result.Success -> {
                 val api = PaymentHighwayEndpoint.create(merchantId, accountId).tokenizeTransaction(transactionId, tokenizeCardDataResult.value)
-                api.enqueue(CallbackResult(completion))
+                api.enqueue(CallbackResultConvert(completion) {
+                    Result.success(Unit)
+                })
             }
             is Result.Failure -> {
                 completion(Result.failure(tokenizeCardDataResult.error))
