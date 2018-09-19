@@ -10,7 +10,7 @@ import io.paymenthighway.sdk.model.CardData
 internal const val DefaultCVCLength = 3
 
 /**
- * Security code edit text
+ * Specialized text field for collecting security code.
  */
 class SecurityCodeEditText : EditText {
 

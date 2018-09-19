@@ -6,7 +6,8 @@ package io.paymenthighway.sdk.ui
 interface ValidationListener {
 
     /**
-     * You can listen if the ui item isValid did change
+     * Called every time the related validation state isValid did change
+     *
      * @param isValid true if ui item is valid
      */
     fun isValidDidChange(isValid: Boolean)

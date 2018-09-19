@@ -78,6 +78,8 @@ dokka {
     outputFormat = 'html'
     outputDirectory = "$buildDir/javadoc"
 
+    includes = ['README.md']
+
     includeNonPublic = false
     reportUndocumented = false
 

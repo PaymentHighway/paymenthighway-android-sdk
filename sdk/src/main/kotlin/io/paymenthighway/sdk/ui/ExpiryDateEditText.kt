@@ -8,7 +8,7 @@ import io.paymenthighway.sdk.R
 import io.paymenthighway.sdk.model.ExpiryDate
 
 /**
- * Expiry Date edit text
+ * Specialized text field for collecting expiration date.
  */
 class ExpiryDateEditText : EditText {
 

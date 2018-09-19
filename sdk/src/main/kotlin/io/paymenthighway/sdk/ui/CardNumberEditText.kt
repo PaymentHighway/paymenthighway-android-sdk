@@ -9,7 +9,7 @@ import io.paymenthighway.sdk.R
 import io.paymenthighway.sdk.model.CardData
 
 /**
- * Card number edit text
+ * Specialized text field for collecting credit number.
  */
 class CardNumberEditText : EditText {
 

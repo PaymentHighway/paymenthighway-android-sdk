@@ -17,7 +17,7 @@ import io.paymenthighway.sdk.R.color.*
 open class EditText : TextInputEditText {
 
     /**
-     * Super class should add own specific lambda for formatting the text
+     * Text formatter
      *
      * Default implementation does not do any formatting
      *
@@ -28,7 +28,7 @@ open class EditText : TextInputEditText {
     var format: (String) -> String = { it }
 
     /**
-     * Super class should add own specific lambda for validate the text
+     * Text validation
      *
      * Default implementation return false
      *
@@ -39,7 +39,7 @@ open class EditText : TextInputEditText {
     var validate: (String) -> Boolean = { false }
 
     /**
-     * Listener for changing of the validatation state of the text field
+     * Listener for validation state change
      */
     var editTextValidationListener: ValidationListener? = null
 
