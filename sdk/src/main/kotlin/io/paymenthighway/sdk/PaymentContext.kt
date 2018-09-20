@@ -33,22 +33,22 @@ class PaymentContext<V>(config: PaymentConfig, private val backendAdapter: Backe
     fun addCard(card: CardData, completion: (Result<V, Exception>) -> Unit) {
         backendAdapter.getTransactionId { result ->
             when (result) {
-                is Result.Success -> getEncryptionKey(result.value, card, completion)
+                is Result.Success -> tokenizeCard(result.value, card, completion)
                 is Result.Failure -> completion(result)
             }
         }
     }
 
-    private fun getEncryptionKey(transactionId: TransactionId, card: CardData, completion: (Result<V, Exception>) -> Unit ) {
+    private fun tokenizeCard(transactionId: TransactionId, card: CardData, completion: (Result<V, Exception>) -> Unit ) {
         service.encryptionKey(transactionId) { result ->
             when (result) {
-                is Result.Success -> tokenizeCard(result.value, transactionId, card, completion)
+                is Result.Success -> performTokenizationRequest(result.value, transactionId, card, completion)
                 is Result.Failure -> completion(result)
             }
         }
     }
 
-    private fun tokenizeCard(encryptionKey: EncryptionKey, transactionId: TransactionId, card: CardData, completion: (Result<V, Exception>) -> Unit ) {
+    private fun performTokenizationRequest(encryptionKey: EncryptionKey, transactionId: TransactionId, card: CardData, completion: (Result<V, Exception>) -> Unit ) {
         service.tokenizeTransaction(transactionId, card, encryptionKey) { result ->
             when (result) {
                 is Result.Success -> backendAdapter.addCardCompleted(transactionId, completion)
