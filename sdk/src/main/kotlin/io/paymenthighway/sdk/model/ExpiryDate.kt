@@ -36,9 +36,9 @@ data class ExpiryDate(val month: String, val year: String) {
          * @return ExpiraryDate or null if the expiry date is invalid
          */
         fun fromString(expiryDate: String) : ExpiryDate?  {
-            val monthYear = expiryDateComponents(expiryDate) ?: return null
-            val monthString = "%02d".format(monthYear.first)
-            val yearString = "%04d".format( if (monthYear.second <= 999) monthYear.second +2000  else monthYear.second)
+            val (month, year) = try { expiryDateComponents(expiryDate) } catch(e: Exception) {  return null }
+            val monthString = "%02d".format(month)
+            val yearString = "%04d".format(year)
             return ExpiryDate(monthString, yearString)
         }
 
@@ -49,19 +49,18 @@ data class ExpiryDate(val month: String, val year: String) {
          * @return true if the date is valid
          */
         fun isValid(expiryDateString: String): Boolean {
-            val monthYear = expiryDateComponents(expiryDateString) ?: return false
-            // Calendar month from 0-11
-            val currentMonth = Calendar.getInstance().get(Calendar.MONTH)+1
+            val (month, year) = try { expiryDateComponents(expiryDateString) } catch(e: Exception) { return false }
+            val currentMonth = Calendar.getInstance().get(Calendar.MONTH)+1 // +1 since Calendar month is 0-11
             val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-            return ((currentYear < monthYear.second) or ((currentYear == monthYear.second) and (currentMonth < monthYear.first)))
+            return ((currentYear < year) or ((currentYear == year) and (currentMonth <= month)))
         }
 
-        private fun expiryDateComponents(expiryDate: String, separator: String = "/"): Pair<Int, Int>? {
+        private fun expiryDateComponents(expiryDate: String, separator: String = "/"): Pair<Int, Int> {
             val components = expiryDate.split(separator)
-            if (components.size != 2) return null
-            val monthNumber: Int = try { components[0].toInt() } catch (e: Exception) { return null }
-            val yearNumber: Int = try { components[1].toInt() } catch (e: Exception) { return null }
-            if ((monthNumber !in 1..12) or (yearNumber < 0)) return null
+            require (components.size == 2) {"Invalid expiry date format!"}
+            val monthNumber = components[0].toInt()
+            val yearNumber = components[1].toInt()
+            require ((monthNumber in 1..12) and (yearNumber > 0)) {"Invalid expiry date values"}
             return Pair(monthNumber, if (yearNumber <= 999) yearNumber + 2000  else yearNumber)
         }
 
