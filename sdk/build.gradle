@@ -1,0 +1,114 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'org.jetbrains.dokka'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    buildTypes {
+
+        debug {
+            buildConfigField "String", 'BASE_URL', '"https://v1-hub-staging.sph-test-solinor.com/"'
+        }
+
+        release {
+            buildConfigField "String", 'BASE_URL', '"https://v1.api.paymenthighway.io/"'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+            includeAndroidResources = true
+        }
+    }
+}
+
+tasks.withType(Test) {
+    systemProperty "robolectric.logging", "stdout"
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:design:28.0.0-rc01'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.robolectric:robolectric:3.8'
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
+    // testImplementation 'org.mockito:mockito-core:2.19.0'
+    testImplementation project(':backendadapterexample')
+
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dokka {
+    // includes = ['README.md']
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+
+    includes = ['README.md']
+
+    includeNonPublic = false
+    reportUndocumented = false
+
+    skipEmptyPackages = true
+
+    noStdlibLink = false
+
+    sourceDirs = files('src/main/kotlin')
+
+    linkMapping {
+        dir = "src/main/kotlin/"
+        url = "https://github.com/PaymentHighway"
+        suffix = "#L"
+    }
+
+    packageOptions {
+        prefix = "io.paymenthighway.sdk"
+        skipDeprecated = false
+        reportUndocumented = true
+        includeNonPublic = false
+    }
+
+    packageOptions {
+        prefix = "android"
+        suppress = true
+    }
+
+    packageOptions {
+        prefix = "androidx"
+        suppress = true
+    }
+}
