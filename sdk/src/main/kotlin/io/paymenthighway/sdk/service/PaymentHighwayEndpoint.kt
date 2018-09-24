@@ -1,7 +1,7 @@
 package io.paymenthighway.sdk.service
 
 import io.paymenthighway.sdk.BuildConfig
-import io.paymenthighway.sdk.PaymentHighwayProperties
+import io.paymenthighway.sdk.Environment
 import io.paymenthighway.sdk.model.*
 import io.paymenthighway.sdk.util.timestamp
 import okhttp3.Interceptor
@@ -32,7 +32,7 @@ internal interface PaymentHighwayEndpoint {
     companion object Factory {
         fun create(merchantId: MerchantId, accountId: AccountId): PaymentHighwayEndpoint {
             val retrofit = Retrofit.Builder()
-                    .baseUrl(PaymentHighwayProperties.baseURL)
+                    .baseUrl(Environment.current.baseURL)
                     .callbackExecutor(Executors.newCachedThreadPool())
                     .client(makeHttpClient(merchantId, accountId))
                     .addConverterFactory(GsonConverterFactory.create())

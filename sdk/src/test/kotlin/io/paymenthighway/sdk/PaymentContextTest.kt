@@ -79,12 +79,12 @@ internal class PaymentContextTest : BaseTest() {
     fun setUp() {
         server = MockWebServer()
         val httpUrl = server.url("/test/")
-        PaymentHighwayProperties.baseURL = httpUrl.url().toString()
+        Environment.current.baseURL = httpUrl.url().toString()
     }
 
     @After
     fun clean() {
-        PaymentHighwayProperties.baseURL = BuildConfig.BASE_URL
+        Environment.current.baseURL = BuildConfig.BASE_URL
         server.shutdown()
     }
 
