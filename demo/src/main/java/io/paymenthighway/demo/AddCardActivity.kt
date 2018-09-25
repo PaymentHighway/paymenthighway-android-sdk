@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.ProgressBar
 import io.paymenthighway.demo.backendadapterexample.BackendAdapterExample
 import io.paymenthighway.demo.backendadapterexample.TransactionToken
+import io.paymenthighway.sdk.Environment
 import io.paymenthighway.sdk.PaymentContext
 import io.paymenthighway.sdk.model.AccountId
 import io.paymenthighway.sdk.model.MerchantId
@@ -73,7 +74,7 @@ class AddCardActivity : AppCompatActivity(), ValidationListener {
         })
 
         val backendAdapter = BackendAdapterExample()
-        val paymentConfig = PaymentConfig(merchantId, accountId)
+        val paymentConfig = PaymentConfig(merchantId, accountId, Environment.Sandbox)
         mPaymentContext = PaymentContext(paymentConfig, backendAdapter)
     }
 
