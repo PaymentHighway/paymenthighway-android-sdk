@@ -18,7 +18,7 @@ class PaymentContext<V>(config: PaymentConfig, private val backendAdapter: Backe
     private val service: PaymentHighwayService
 
     init {
-        service = PaymentHighwayService(config.merchantId, config.accountId)
+        service = PaymentHighwayService(config)
     }
 
     /**

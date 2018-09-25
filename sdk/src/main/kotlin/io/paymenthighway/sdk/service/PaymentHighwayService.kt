@@ -8,11 +8,11 @@ import io.paymenthighway.sdk.util.CallbackResultConvert
 import io.paymenthighway.sdk.util.Result
 import io.paymenthighway.sdk.util.tokenizeCardData
 
-internal class PaymentHighwayService(val merchantId: MerchantId, val accountId: AccountId) {
+internal class PaymentHighwayService(val config: PaymentConfig) {
 
     fun encryptionKey(transactionId: TransactionId, completion: (Result<EncryptionKey, Exception>) -> Unit) {
 
-        val api = PaymentHighwayEndpoint.create(merchantId, accountId).encryptionKey(transactionId)
+        val api = PaymentHighwayEndpoint.create(config).encryptionKey(transactionId)
         api.enqueue(CallbackResultConvert(completion) {
             it.key?.let { Result.success(EncryptionKey(it)) } ?: run { Result.failure(EmptyDataException()) }
         })
@@ -27,7 +27,7 @@ internal class PaymentHighwayService(val merchantId: MerchantId, val accountId: 
         val tokenizeCardDataResult = tokenizeCardData(cardData, encryptionKey)
         when (tokenizeCardDataResult){
             is Result.Success -> {
-                val api = PaymentHighwayEndpoint.create(merchantId, accountId).tokenizeTransaction(transactionId, tokenizeCardDataResult.value)
+                val api = PaymentHighwayEndpoint.create(config).tokenizeTransaction(transactionId, tokenizeCardDataResult.value)
                 api.enqueue(CallbackResultConvert(completion) {
                     Result.success(Unit)
                 })

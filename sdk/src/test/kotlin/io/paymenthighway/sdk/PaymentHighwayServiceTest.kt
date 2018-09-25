@@ -13,6 +13,7 @@ internal class PaymentHighwayServiceTest: BaseTest()  {
 
     val merchantId = MerchantId("test_merchantId")
     val accountId = AccountId("test")
+    val paymentConfig = PaymentConfig(merchantId, accountId, Environment.Sandbox)
     val cardTest = CardData("4153013999700024", "024", ExpiryDate("11", "2023"))
 
     lateinit var backendAdapter: BackendAdapterExample
@@ -21,7 +22,7 @@ internal class PaymentHighwayServiceTest: BaseTest()  {
     @Before
     fun setUp() {
         backendAdapter = BackendAdapterExample()
-        service = PaymentHighwayService(merchantId, accountId)
+        service = PaymentHighwayService(paymentConfig)
     }
 
     @Test
