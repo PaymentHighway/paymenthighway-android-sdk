@@ -175,9 +175,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-### AndroidStudio Patch ###
-
-!/gradle/wrapper/gradle-wrapper.jar
 
 ### Java ###
 # Compiled class file
@@ -235,5 +232,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+
+### AndroidStudio Patch ###
+
+!/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.gitignore.io/api/java,macos,kotlin,android,androidstudio
