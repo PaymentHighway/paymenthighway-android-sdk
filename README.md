@@ -25,4 +25,4 @@ implementation 'io.paymenthighway:sdk:0.0.1'
 
 # Use
 
-See the demo project included how to use the sdk.
+See the [Demo Project](https://github.com/PaymentHighway/paymenthighway-android-sdk/tree/master/demo) included how to use the sdk.
