@@ -19,8 +19,14 @@ MIT
 
 # Install
 
-```
-implementation 'io.paymenthighway:sdk:0.0.1'
+```kotlin
+repositories {
+    jcenter()
+}
+
+dependencies {
+     implementation 'io.paymenthighway.sdk:paymenthighway-android-sdk:2.0.0'
+}
 ```
 
 # Use

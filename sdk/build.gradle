@@ -12,10 +12,9 @@ android {
         minSdkVersion 14
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName libraryVersion
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     sourceSets {
@@ -48,6 +47,8 @@ tasks.withType(Test) {
     systemProperty "robolectric.logging", "stdout"
 }
 
+apply from: './publish.gradle'
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
@@ -73,11 +74,10 @@ repositories {
     mavenCentral()
 }
 
+
 dokka {
     outputFormat = 'html'
     outputDirectory = "$buildDir/javadoc"
-
-    includes = ['README.md']
 
     includeNonPublic = false
     reportUndocumented = false
@@ -85,8 +85,6 @@ dokka {
     skipEmptyPackages = true
 
     noStdlibLink = false
-
-    sourceDirs = files('src/main/kotlin')
 
     linkMapping {
         dir = "src/main/kotlin/"
@@ -100,6 +98,28 @@ dokka {
         reportUndocumented = true
         includeNonPublic = false
     }
+
+    packageOptions {
+        prefix = "android"
+        suppress = true
+    }
+
+    packageOptions {
+        prefix = "androidx"
+        suppress = true
+    }
+}
+
+task dokkaHtmldoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = "html"
+    outputDirectory = "./docs"
+
+    includeNonPublic = false
+    reportUndocumented = false
+
+    skipEmptyPackages = true
+
+    noStdlibLink = false
 
     packageOptions {
         prefix = "android"
