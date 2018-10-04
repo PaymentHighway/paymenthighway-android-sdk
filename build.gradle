@@ -1,21 +1,54 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.61'
-    ext.fuel_version = '1.15.0'
-    ext.okhttp_version = '3.11.0'
-    ext.retrofit2_version = '2.4.0'
-    ext.dokka_version = '0.9.17'
+
+    ext {
+        gradle_version = '3.1.4'
+        kotlin_version = '1.2.61'
+        fuel_version = '1.15.0'
+        okhttp_version = '3.11.0'
+        retrofit2_version = '2.4.0'
+        dokka_plugin_version = '0.9.17'
+        bintray_plugin_version = '1.8.4'
+        android_maven_gradle_plugin_version = '2.0'
+
+        bintrayRepo = 'maven'
+        bintrayName = 'paymenthighway-android-sdk'
+        bintrayOrganization = 'paymenthighway'
+
+        publishedGroupId = 'io.paymenthighway.sdk'
+        libraryName = 'paymenthighway-android-sdk'
+        artifact = 'paymenthighway-android-sdk'
+
+        libraryDescription = 'This is the Payment Highway Android SDK. Payment Highway is the app payments toolkit built for developers who are busy building great apps.'
+
+        siteUrl = 'https://www.paymenthighway.io/'
+        gitUrl = 'https://github.com/PaymentHighway/paymenthighway-android-sdk'
+
+        libraryVersion = '2.0.0'
+        vcsLibraryTag = "v-$libraryVersion"
+
+        developerId = 'stepiro'
+        developerName = 'Stefano Pironato'
+        developerEmail = 'stefano.pironato@paymenthighway.fi'
+
+        licenseName = 'MIT License'
+        licenseUrl = 'https://github.com/PaymentHighway/paymenthighway-android-sdk/blob/master/LICENSE'
+        allLicenses = ["MIT"]
+    }
 
     repositories {
         google()
         jcenter()
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_plugin_version"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_plugin_version"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:$android_maven_gradle_plugin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
