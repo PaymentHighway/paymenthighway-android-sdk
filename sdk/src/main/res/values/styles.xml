@@ -12,19 +12,30 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="PHTextInputLayoutStyle" parent="Widget.Design.TextInputLayout">
-        <item name="android:textColorHint">@color/floatingActiveLabelColor</item>
-        <item name="colorControlNormal">@color/floatingLabelColor</item>
-        <item name="colorControlActivated">@color/floatingActiveLabelColor</item>
+        <item name="android:textColorHint">@color/phPrimaryForegroundColor</item>
+        <item name="colorControlNormal">@color/phPrimaryForegroundColor</item>
+        <item name="colorControlActivated">@color/phPrimaryForegroundColor</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:background">@drawable/input_background</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:dividerPadding">3dp</item>
+        <item name="android:paddingTop">4dp</item>
     </style>
 
     <style name="PHEditTextStyle" parent="@android:style/Widget.EditText">
-        <item name="android:textColor">@drawable/edit_text_color</item>
+        <item name="android:textColorPrimary">@drawable/edit_text_color</item>
         <item name="android:textColorHint">@color/hintColor</item>
-    </style>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+     </style>
 
-    <style name="PHErrorAppearanceStyle" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/errorForegroundColor</item>
-        <item name="android:textSize">14sp</item>
-    </style>
+     <style name="PHErrorAppearanceStyle" parent="@android:style/TextAppearance">
+         <item name="android:textColor">@color/errorForegroundColor</item>
+         <item name="android:textSize">14sp</item>
+         <item name="android:fontFamily">@font/roboto</item>
+     </style>
 
-</resources>
+ </resources>

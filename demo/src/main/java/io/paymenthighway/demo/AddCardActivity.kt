@@ -19,12 +19,14 @@ import io.paymenthighway.sdk.model.MerchantId
 import io.paymenthighway.sdk.model.PaymentConfig
 import io.paymenthighway.sdk.ui.AddCardWidget
 import io.paymenthighway.sdk.ui.ValidationListener
+import io.paymenthighway.sdk.ui.setValidationListener
 import io.paymenthighway.sdk.util.Result
 
 class AddCardActivity : AppCompatActivity(), ValidationListener {
 
     internal lateinit var mCardInputWidget: AddCardWidget
     internal lateinit var mAddCardButton: Button
+    internal lateinit var mCancelButton: Button
     internal lateinit var mProgressBar: ProgressBar
 
     internal  lateinit  var mPaymentContext: PaymentContext<TransactionToken>
@@ -34,10 +36,26 @@ class AddCardActivity : AppCompatActivity(), ValidationListener {
         setContentView(R.layout.activity_add_card)
 
         mCardInputWidget = findViewById<AddCardWidget>(R.id.add_card_widget)
-        mCardInputWidget.addCardWidgetValidationListener = this
+
+//        mCardInputWidget.addCardWidgetValidationListener = this
+
+        mCardInputWidget.setValidationListener {
+                isValidDidChange {
+                mAddCardButton.isEnabled = it
+                if (it) {
+                    hideKeyboard()
+                }
+            }
+        }
 
         mAddCardButton = findViewById<Button>(R.id.add_card_button)
+        mCancelButton = findViewById<Button>(R.id.cancel_button)
         mProgressBar = findViewById<ProgressBar>(R.id.progress_bar)
+
+
+        mCancelButton.setOnClickListener(View.OnClickListener { view ->
+            finish()
+        })
 
         mAddCardButton.isEnabled = false
         mAddCardButton.setOnClickListener(View.OnClickListener { view ->
@@ -81,9 +99,14 @@ class AddCardActivity : AppCompatActivity(), ValidationListener {
     override fun isValidDidChange(isValid: Boolean) {
         mAddCardButton.isEnabled = isValid
         if (isValid) {
-            val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(currentFocus.windowToken, 0)
+            hideKeyboard()
         }
+    }
+
+    private fun hideKeyboard() {
+        if (currentFocus == null) return
+        val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
     }
 
     private fun showAlertDialog(title: String, message: String, completion: () -> Unit) {

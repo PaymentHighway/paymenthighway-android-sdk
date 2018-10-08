@@ -12,3 +12,24 @@ interface ValidationListener {
      */
     fun isValidDidChange(isValid: Boolean)
 }
+
+class ValidationListenerHelper: ValidationListener {
+
+    private var isValidDidChangeListener: IsValidDidChangeListener? = null
+
+    fun isValidDidChange(isValidDidChange: IsValidDidChangeListener) {
+        this.isValidDidChangeListener = isValidDidChange
+    }
+
+    override fun isValidDidChange(isValid: Boolean) {
+        this.isValidDidChangeListener?.invoke(isValid)
+    }
+}
+
+private typealias IsValidDidChangeListener = (Boolean) -> Unit
+
+fun AddCardWidget.setValidationListener(init: ValidationListenerHelper.() -> Unit) {
+    val listener = ValidationListenerHelper()
+    listener.init()
+    this.addCardWidgetValidationListener = listener
+}

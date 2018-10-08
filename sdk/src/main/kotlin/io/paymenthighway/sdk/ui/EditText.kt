@@ -4,12 +4,9 @@ import android.content.Context
 import android.graphics.Rect
 import android.support.design.widget.TextInputEditText
 import android.support.design.widget.TextInputLayout
-import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import io.paymenthighway.sdk.R
-import io.paymenthighway.sdk.R.color.*
 
 /**
  * Base class for the Payment Highway text input ui items
