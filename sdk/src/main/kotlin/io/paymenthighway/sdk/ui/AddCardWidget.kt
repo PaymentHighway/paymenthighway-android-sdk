@@ -49,6 +49,12 @@ class AddCardWidget: LinearLayout, ValidationListener {
      */
     var addCardWidgetValidationListener: ValidationListener? = null
 
+    var editTextImageProvider: EditTextImageProvider? = null
+        set(value: EditTextImageProvider?) {
+            field = value
+            setTextImages()
+        }
+
     /**
      * Returns true is all the card info are valid
      */
@@ -114,5 +120,11 @@ class AddCardWidget: LinearLayout, ValidationListener {
         val editTexts = arrayOf(mCardNumberEditText, mExpiryDateEditText, mSecurityCodeEditText)
         val notValidTexts = editTexts.filter { !it.isValid }
         if (notValidTexts.size > 0) notValidTexts[0].requestFocus()
+    }
+
+    private fun setTextImages() {
+        mCardNumberEditText.setCompoundDrawablesWithIntrinsicBounds(editTextImageProvider?.imageDrawable(EditTextType.CARD_NUMBER) ?: 0, 0, 0, 0)
+        mExpiryDateEditText.setCompoundDrawablesWithIntrinsicBounds(editTextImageProvider?.imageDrawable(EditTextType.EXPIRY_DATE) ?: 0, 0, 0, 0)
+        mSecurityCodeEditText.setCompoundDrawablesWithIntrinsicBounds(editTextImageProvider?.imageDrawable(EditTextType.SECURITY_CODE) ?: 0, 0, 0, 0)
     }
 }

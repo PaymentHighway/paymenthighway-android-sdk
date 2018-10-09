@@ -13,6 +13,8 @@ interface ValidationListener {
     fun isValidDidChange(isValid: Boolean)
 }
 
+private typealias IsValidDidChangeListener = (Boolean) -> Unit
+
 class ValidationListenerHelper: ValidationListener {
 
     private var isValidDidChangeListener: IsValidDidChangeListener? = null
@@ -25,8 +27,6 @@ class ValidationListenerHelper: ValidationListener {
         this.isValidDidChangeListener?.invoke(isValid)
     }
 }
-
-private typealias IsValidDidChangeListener = (Boolean) -> Unit
 
 fun AddCardWidget.setValidationListener(init: ValidationListenerHelper.() -> Unit) {
     val listener = ValidationListenerHelper()

@@ -17,12 +17,15 @@ import io.paymenthighway.sdk.PaymentContext
 import io.paymenthighway.sdk.model.AccountId
 import io.paymenthighway.sdk.model.MerchantId
 import io.paymenthighway.sdk.model.PaymentConfig
-import io.paymenthighway.sdk.ui.AddCardWidget
-import io.paymenthighway.sdk.ui.ValidationListener
-import io.paymenthighway.sdk.ui.setValidationListener
+import io.paymenthighway.sdk.ui.*
 import io.paymenthighway.sdk.util.Result
 
-class AddCardActivity : AppCompatActivity(), ValidationListener {
+// To enable the theme dark:
+// set themeDark = true
+// uncomment the payment highway colors in the colors.xml resource
+val themeDark = false
+
+class AddCardActivity : AppCompatActivity(), ValidationListener, EditTextImageProvider {
 
     internal lateinit var mCardInputWidget: AddCardWidget
     internal lateinit var mAddCardButton: Button
@@ -37,15 +40,23 @@ class AddCardActivity : AppCompatActivity(), ValidationListener {
 
         mCardInputWidget = findViewById<AddCardWidget>(R.id.add_card_widget)
 
-//        mCardInputWidget.addCardWidgetValidationListener = this
+        // Example For ValidationListener as delegate see below implementation
+        // mCardInputWidget.addCardWidgetValidationListener = this
 
         mCardInputWidget.setValidationListener {
-                isValidDidChange {
+            isValidDidChange {
                 mAddCardButton.isEnabled = it
                 if (it) {
                     hideKeyboard()
                 }
             }
+        }
+
+        // Example for EditTextImageProvider as delegate
+        // mCardInputWidget.editTextImageProvider = this
+
+        mCardInputWidget.setEditTextImageDrawableProvider {
+            imageDrawable { getDrawableId(it) }
         }
 
         mAddCardButton = findViewById<Button>(R.id.add_card_button)
@@ -103,10 +114,18 @@ class AddCardActivity : AppCompatActivity(), ValidationListener {
         }
     }
 
+    override fun imageDrawable(type: EditTextType): Int = getDrawableId(type)
+
     private fun hideKeyboard() {
         if (currentFocus == null) return
         val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+    }
+
+    private fun getDrawableId(type: EditTextType): Int = when (type) {
+        EditTextType.CARD_NUMBER -> if (themeDark)R.drawable.ccnum_dark else R.drawable.ccnum_light
+        EditTextType.EXPIRY_DATE -> if (themeDark)R.drawable.date_dark else R.drawable.date_light
+        EditTextType.SECURITY_CODE -> if (themeDark)R.drawable.lock_dark else R.drawable.lock_light
     }
 
     private fun showAlertDialog(title: String, message: String, completion: () -> Unit) {

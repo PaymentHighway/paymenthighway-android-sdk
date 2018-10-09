@@ -4,7 +4,7 @@ This is the [Payment Highway](https://www.paymenthighway.io) Android SDK.
 
 ## Requirements
 
-* You have an existing Android project supporting Android SDK Version 14 or later
+* You have an existing Android project supporting Android SDK Version 16 or later
 * Valid Payment Highway `account id` and `merchant id`
 * Custom-build Mobile Application Backend that returns session id and handles token with token id
 

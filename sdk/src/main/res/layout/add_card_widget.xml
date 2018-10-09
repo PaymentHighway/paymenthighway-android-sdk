@@ -25,7 +25,6 @@
             android:nextFocusDown="@+id/edit_text_expiry_date"
             android:nextFocusForward="@+id/edit_text_expiry_date"
             android:theme="@style/PHEditTextStyle"
-            android:drawableLeft="@drawable/ccnum"
             android:drawablePadding="@dimen/margin"
             />
 
@@ -62,7 +61,6 @@
                 android:nextFocusDown="@+id/edit_text_security_code"
                 android:nextFocusForward="@+id/edit_text_security_code"
                 android:theme="@style/PHEditTextStyle"
-                android:drawableLeft="@drawable/date"
                 android:drawablePadding="@dimen/margin"
                 />
 
@@ -88,7 +86,6 @@
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:theme="@style/PHEditTextStyle"
-                android:drawableLeft="@drawable/lock"
                 android:drawablePadding="@dimen/margin"
                 />
 
