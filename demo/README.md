@@ -17,13 +17,13 @@ The demo includes an implementation example for a `BackendAdapter` in the module
 
 ## Environment
 
-Payment Highway provide a [development `sandbox`](https://dev.paymenthighway.io/#development-sandbox) and a `production` environments.
+Payment Highway provides a [development `sandbox`](https://dev.paymenthighway.io/#development-sandbox) and a `production` environments.
 
 ## Add a credit card
 
 In order to add credit card and get a payment token you need a `PaymentContext`.
 
-The demo app run in the `Sandbox` environment therefore uses the provided [sandbox `merchant id` and `account id`](https://dev.paymenthighway.io/#development-sandbox).
+The demo app run in the `Sandbox` environment and therefore uses the provided [sandbox `merchant id` and `account id`](https://dev.paymenthighway.io/#development-sandbox).
 
 Example how istantiate a `PaymentContext`:
 
@@ -97,7 +97,7 @@ You can listen when the card data is valid implementing in your Activity (for ex
     }  
 ```
 
-There is a helper where you can listen passing a lambda:
+There is a helper where you can listen for `isValidDidChange` passing a lambda:
 ```kotlin:
     mCardInputWidget = findViewById<AddCardWidget>(R.id.add_card_widget)
 
@@ -152,13 +152,13 @@ Then you can add the card and get (if implemented in backendadapter) a payment t
 
 You can define your own appearence attributes for the Payment Highway UI Elements.
 
-SDK provide Styles for the TextInputLayout, for the EditText and for the ErrorTextAppearance.
+SDK provides Styles for the TextInputLayout, for the EditText and for the ErrorTextAppearance.
 
 ```xml
     <style name="PHTextInputLayoutStyle" parent="Widget.Design.TextInputLayout">
-        <item name="android:textColorHint">@color/phPrimaryForegroundColor</item>
-        <item name="colorControlNormal">@color/phPrimaryForegroundColor</item>
-        <item name="colorControlActivated">@color/phPrimaryForegroundColor</item>
+        <item name="android:textColorHint">?phPrimaryForegroundColor</item>
+        <item name="colorControlNormal">?phPrimaryForegroundColor</item>
+        <item name="colorControlActivated">?phPrimaryForegroundColor</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:background">@drawable/input_background</item>
         <item name="android:paddingRight">3dp</item>
@@ -169,37 +169,110 @@ SDK provide Styles for the TextInputLayout, for the EditText and for the ErrorTe
 
     <style name="PHEditTextStyle" parent="@android:style/Widget.EditText">
         <item name="android:textColorPrimary">@drawable/edit_text_color</item>
-        <item name="android:textColorHint">@color/hintColor</item>
+        <item name="android:textColorHint">?hintColor</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">16sp</item>
         <item name="android:lineSpacingExtra">8sp</item>
-    </style>
+     </style>
 
-    <style name="PHErrorAppearanceStyle" parent="@android:style/TextAppearance">
-         <item name="android:textColor">@color/errorForegroundColor</item>
+     <style name="PHErrorAppearanceStyle" parent="@android:style/TextAppearance">
+         <item name="android:textColor">?errorForegroundColor</item>
          <item name="android:textSize">14sp</item>
          <item name="android:fontFamily">@font/roboto</item>
+     </style>
+```
+
+The SDK defines a set of attributes that can be configured in your theme:
+```xml
+    <attr name="imageCardNumber" format="reference"/>
+    <attr name="imageSecurityCode" format="reference"/>
+    <attr name="imageExpiryDate" format="reference"/>
+
+    <attr name="primaryBackgroundColor" format="color|reference"/>
+    <attr name="secondaryBackgroundColor" format="color|reference"/>
+
+    <attr name="highlightColor" format="color|reference"/>
+    <attr name="highlightDisabledColor" format="color|reference"/>
+    <attr name="highlightBackgroundColor" format="color|reference"/>
+
+    <attr name="primaryForegroundColor" format="color|reference"/>
+    <attr name="primaryActiveForegroundColor" format="color|reference"/>
+    <attr name="phPrimaryForegroundColor" format="color|reference"/>
+    <attr name="phPrimaryForegroundColorDark" format="color|reference"/>
+    <attr name="hintColor" format="color|reference"/>
+    <attr name="errorForegroundColor" format="color|reference"/>
+```
+
+SDK provides 2 themes with predefined colors.
+
+Light theme:
+```xml
+    <style name="Theme.PH.Light" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="imageCardNumber">@drawable/ccnum_light</item>
+        <item name="imageExpiryDate">@drawable/date_light</item>
+        <item name="imageSecurityCode">@drawable/lock_light</item>
+
+        <item name="primaryBackgroundColor">@color/primaryBackgroundColorLight</item>
+        <item name="secondaryBackgroundColor">@color/secondaryBackgroundColorLight</item>
+
+        <item name="highlightColor">@color/highlightColorLight</item>
+        <item name="highlightDisabledColor">@color/highlightDisabledColorLight</item>
+        <item name="highlightBackgroundColor">@color/highlightBackgroundColorLight</item>
+
+        <item name="primaryForegroundColor">@color/primaryForegroundColorLight</item>
+        <item name="primaryActiveForegroundColor">@color/primaryActiveForegroundColorLight</item>
+        <item name="phPrimaryForegroundColor">@color/phPrimaryForegroundColorLight</item>
+        <item name="hintColor">@color/hintColorLight</item>>
+        <item name="errorForegroundColor">@color/errorForegroundColorLight</item>
+    </style>
+````
+
+Dark theme:
+```xml
+    <style name="Theme.PH.Dark" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="imageCardNumber">@drawable/ccnum_dark</item>
+        <item name="imageExpiryDate">@drawable/date_dark</item>
+        <item name="imageSecurityCode">@drawable/lock_dark</item>
+
+        <item name="primaryBackgroundColor">@color/primaryBackgroundColorDark</item>
+        <item name="secondaryBackgroundColor">@color/secondaryBackgroundColorDark</item>
+
+        <item name="highlightColor">@color/highlightColorDark</item>
+        <item name="highlightDisabledColor">@color/highlightDisabledColorDark</item>
+        <item name="highlightBackgroundColor">@color/highlightBackgroundColorDark</item>
+
+        <item name="primaryForegroundColor">@color/primaryForegroundColorDark</item>
+        <item name="primaryActiveForegroundColor">@color/primaryActiveForegroundColorDark</item>
+        <item name="phPrimaryForegroundColor">@color/phPrimaryForegroundColorDark</item>
+        <item name="hintColor">@color/hintColorDark</item>>
+        <item name="errorForegroundColor">@color/errorForegroundColorDark</item>
     </style>
 ```
 
-The styles use a default set of colors defined in the SDK:
+In your app theme you can use the predefined Payment Highway themes:
 ```xml
-    <color name="primaryBackgroundColor">@android:color/transparent</color>
-    <color name="secondaryBackgroundColor">#e0e0e0</color>
+    <style name="AppTheme" parent="Theme.PH.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">?phPrimaryForegroundColor</item>
+        <item name="colorPrimaryDark">?phPrimaryForegroundColor</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
-    <color name="highlightColor">@color/phPrimaryForegroundColor</color>
-    <color name="highlightDisabledColor">#997c7c7c</color>
-    <color name="highlightBackgroundColor">@color/secondaryBackgroundColor</color>
-
-    <color name="primaryForegroundColor">#99000000</color>
-    <color name="primaryActiveForegroundColor">#de000000</color>
-    <color name="phPrimaryForegroundColor">#9d00ba</color>
-    <color name="phPrimaryForegroundColorDark">#d261e7</color>
-    <color name="hintColor">#ababab</color>
-    <color name="errorForegroundColor">#ff0000</color>
+    </style>
 ```
 
-You can customize the add card field either overriding the colors in your app or overriding the style(s) and define your own appearence.
+You can customize the add card fields either defining all the Payment Highway properties in your app theme or overriding the style(s) and define your own appearence.
 
-In the demo there is a definition of a dark theme as a example. You can try it just uncommenting the definition of the colors in the file color.xml. You need set the variable `val themeDark = true` in the file AddCardActivity; this is needed to return different images for the card inputs.
+You can test the Payment Highway Dark theme in the demo app just changing the AppTheme definition in styles.xml:
+from:
+```xml
+    <style name="AppTheme" parent="Theme.PH.Light">
+    ...
+    </style>
+````
+to:
+```xml
+    <style name="AppTheme" parent="Theme.PH.Dark">
+    ...
+    </style>
+````

@@ -1,20 +1,9 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light" />
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
     <style name="PHTextInputLayoutStyle" parent="Widget.Design.TextInputLayout">
-        <item name="android:textColorHint">@color/phPrimaryForegroundColor</item>
-        <item name="colorControlNormal">@color/phPrimaryForegroundColor</item>
-        <item name="colorControlActivated">@color/phPrimaryForegroundColor</item>
+        <item name="android:textColorHint">?phPrimaryForegroundColor</item>
+        <item name="colorControlNormal">?phPrimaryForegroundColor</item>
+        <item name="colorControlActivated">?phPrimaryForegroundColor</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:background">@drawable/input_background</item>
         <item name="android:paddingRight">3dp</item>
@@ -25,7 +14,7 @@
 
     <style name="PHEditTextStyle" parent="@android:style/Widget.EditText">
         <item name="android:textColorPrimary">@drawable/edit_text_color</item>
-        <item name="android:textColorHint">@color/hintColor</item>
+        <item name="android:textColorHint">?hintColor</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">16sp</item>
@@ -33,7 +22,7 @@
      </style>
 
      <style name="PHErrorAppearanceStyle" parent="@android:style/TextAppearance">
-         <item name="android:textColor">@color/errorForegroundColor</item>
+         <item name="android:textColor">?errorForegroundColor</item>
          <item name="android:textSize">14sp</item>
          <item name="android:fontFamily">@font/roboto</item>
      </style>

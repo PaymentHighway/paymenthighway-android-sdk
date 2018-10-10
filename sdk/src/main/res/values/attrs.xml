@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="imageCardNumber" format="reference"/>
+    <attr name="imageSecurityCode" format="reference"/>
+    <attr name="imageExpiryDate" format="reference"/>
+
+    <attr name="primaryBackgroundColor" format="color|reference"/>
+    <attr name="secondaryBackgroundColor" format="color|reference"/>
+
+    <attr name="highlightColor" format="color|reference"/>
+    <attr name="highlightDisabledColor" format="color|reference"/>
+    <attr name="highlightBackgroundColor" format="color|reference"/>
+
+    <attr name="primaryForegroundColor" format="color|reference"/>
+    <attr name="primaryActiveForegroundColor" format="color|reference"/>
+    <attr name="phPrimaryForegroundColor" format="color|reference"/>
+    <attr name="phPrimaryForegroundColorDark" format="color|reference"/>
+    <attr name="hintColor" format="color|reference"/>
+    <attr name="errorForegroundColor" format="color|reference"/>
+
+</resources>

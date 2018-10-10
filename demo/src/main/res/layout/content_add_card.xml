@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AddCardActivity"
     tools:showIn="@layout/activity_add_card"
-    android:background="@color/primaryBackgroundColor">
+    android:background="?primaryBackgroundColor">
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -49,7 +49,7 @@
             android:layout_marginRight="@dimen/margin"
             android:background="@drawable/background_cancel_button"
             android:text="@string/cancel"
-            android:textColor="@color/phPrimaryForegroundColor" />
+            android:textColor="?phPrimaryForegroundColor" />
 
         <Button
             android:id="@+id/add_card_button"

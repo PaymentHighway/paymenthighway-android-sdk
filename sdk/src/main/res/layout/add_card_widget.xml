@@ -25,6 +25,7 @@
             android:nextFocusDown="@+id/edit_text_expiry_date"
             android:nextFocusForward="@+id/edit_text_expiry_date"
             android:theme="@style/PHEditTextStyle"
+            android:drawableLeft="?imageCardNumber"
             android:drawablePadding="@dimen/margin"
             />
 
@@ -61,6 +62,7 @@
                 android:nextFocusDown="@+id/edit_text_security_code"
                 android:nextFocusForward="@+id/edit_text_security_code"
                 android:theme="@style/PHEditTextStyle"
+                android:drawableLeft="?imageExpiryDate"
                 android:drawablePadding="@dimen/margin"
                 />
 
@@ -86,6 +88,7 @@
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:theme="@style/PHEditTextStyle"
+                android:drawableLeft="?imageSecurityCode"
                 android:drawablePadding="@dimen/margin"
                 />
 

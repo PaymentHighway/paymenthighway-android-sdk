@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.PH.Light" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="imageCardNumber">@drawable/ccnum_light</item>
+        <item name="imageExpiryDate">@drawable/date_light</item>
+        <item name="imageSecurityCode">@drawable/lock_light</item>
+
+        <item name="primaryBackgroundColor">@color/primaryBackgroundColorLight</item>
+        <item name="secondaryBackgroundColor">@color/secondaryBackgroundColorLight</item>
+
+        <item name="highlightColor">@color/highlightColorLight</item>
+        <item name="highlightDisabledColor">@color/highlightDisabledColorLight</item>
+        <item name="highlightBackgroundColor">@color/highlightBackgroundColorLight</item>
+
+        <item name="primaryForegroundColor">@color/primaryForegroundColorLight</item>
+        <item name="primaryActiveForegroundColor">@color/primaryActiveForegroundColorLight</item>
+        <item name="phPrimaryForegroundColor">@color/phPrimaryForegroundColorLight</item>
+        <item name="hintColor">@color/hintColorLight</item>>
+        <item name="errorForegroundColor">@color/errorForegroundColorLight</item>
+    </style>
+
+    <style name="Theme.PH.Dark" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="imageCardNumber">@drawable/ccnum_dark</item>
+        <item name="imageExpiryDate">@drawable/date_dark</item>
+        <item name="imageSecurityCode">@drawable/lock_dark</item>
+
+        <item name="primaryBackgroundColor">@color/primaryBackgroundColorDark</item>
+        <item name="secondaryBackgroundColor">@color/secondaryBackgroundColorDark</item>
+
+        <item name="highlightColor">@color/highlightColorDark</item>
+        <item name="highlightDisabledColor">@color/highlightDisabledColorDark</item>
+        <item name="highlightBackgroundColor">@color/highlightBackgroundColorDark</item>
+
+        <item name="primaryForegroundColor">@color/primaryForegroundColorDark</item>
+        <item name="primaryActiveForegroundColor">@color/primaryActiveForegroundColorDark</item>
+        <item name="phPrimaryForegroundColor">@color/phPrimaryForegroundColorDark</item>
+        <item name="hintColor">@color/hintColorDark</item>>
+        <item name="errorForegroundColor">@color/errorForegroundColorDark</item>
+    </style>
+
+</resources>

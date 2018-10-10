@@ -15,7 +15,7 @@
     <item>
         <shape>
             <solid
-                android:color="@color/highlightBackgroundColor" />
+                android:color="?highlightBackgroundColor" />
             <corners
                 android:radius="@dimen/text_background_radius" />
             <padding
