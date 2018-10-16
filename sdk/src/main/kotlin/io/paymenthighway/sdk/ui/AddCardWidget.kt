@@ -1,8 +1,6 @@
 package io.paymenthighway.sdk.ui
 
 import android.content.Context
-import android.support.design.widget.TextInputLayout
-import android.support.v4.graphics.drawable.DrawableCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -11,6 +9,7 @@ import io.paymenthighway.sdk.R
 import io.paymenthighway.sdk.model.CardData
 import io.paymenthighway.sdk.model.ExpiryDate
 import io.paymenthighway.sdk.util.decimalDigits
+
 
 /**
  * Add Card Widget

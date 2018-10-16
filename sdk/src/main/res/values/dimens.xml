@@ -1,4 +1,6 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="add_card_expiry_middle_margin">8dp</dimen>
+    <dimen name="text_background_radius">3dp</dimen>
+    <dimen name="margin">8dp</dimen>
 </resources>

@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Light Theme -->
+    <color name="primaryBackgroundColorLight">@android:color/transparent</color>
+    <color name="secondaryBackgroundColorLight">#e0e0e0</color>
 
-<color name="primaryEditTextColor">#484545</color>
-<color name="primaryActiveEditTextColor">#000000</color>
-<color name="errorForegroundColor">#ff0303</color>
+    <color name="highlightColorLight">@color/phPrimaryForegroundColorLight</color>
+    <color name="highlightDisabledColorLight">#997c7c7c</color>
+    <color name="highlightBackgroundColorLight">@color/secondaryBackgroundColorLight</color>
 
-<color name="hintColor">#d9d3d3</color>
-<color name="floatingLabelColor">#1c6edc</color>
-<color name="floatingActiveLabelColor">#0f3a73</color>
+    <color name="primaryForegroundColorLight">#99000000</color>
+    <color name="primaryActiveForegroundColorLight">#de000000</color>
+    <color name="phPrimaryForegroundColorLight">#9d00ba</color>
+    <color name="hintColorLight">#ababab</color>
+    <color name="errorForegroundColorLight">#ff0000</color>
+
+    <!-- Dark Theme -->
+    <color name="primaryBackgroundColorDark">@android:color/black</color>
+    <color name="secondaryBackgroundColorDark">@android:color/black</color>
+
+    <color name="highlightColorDark">@color/phPrimaryForegroundColorDark</color>
+    <color name="highlightDisabledColorDark">@color/secondaryBackgroundColorDark</color>
+    <color name="highlightBackgroundColorDark">#e0e0e0</color>
+
+    <color name="primaryForegroundColorDark">#cbffffff</color>
+    <color name="primaryActiveForegroundColorDark">#ffffff</color>
+    <color name="phPrimaryForegroundColorDark">#d261e7</color>
+    <color name="hintColorDark">#ababab</color>
+    <color name="errorForegroundColorDark">#ff0000</color>
 
 </resources>

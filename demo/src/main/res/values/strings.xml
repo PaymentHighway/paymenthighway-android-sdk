@@ -2,5 +2,7 @@
     <string name="app_name">Payment Highway sdk demo</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_card">Add Credit Card</string>
-    <string name="button_add_card">Save</string>
+    <string name="button_add_card">Add Card</string>
+    <string name="cancel">Cancel</string>
+    <string name="payment_highway_logo">Payment Highway logo</string>
 </resources>
