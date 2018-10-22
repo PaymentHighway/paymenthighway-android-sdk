@@ -7,9 +7,9 @@ This example app demonstrates how to integrate Android Payment Highway SDK for a
 
 As the secret Payment Highway credentials cannot be stored within the mobile application, a merchant backend is required for handling the authenticated communications to the service, such as fetching the card tokens and initializing the transactions. This is also where the information regarding the card tokens and payments are stored.
 
-The bundled demo application uses a pre-made dummy merchant backend, which connects to the [Payment Highway development sandbox](https://dev.paymenthighway.io/#development-sandbox). Each merchant needs to implement this backend themselves.
+The bundled demo application uses the merchant backend demo that you can find in the repository [paymenthighway-merchant-backend-demo](https://github.com/PaymentHighway/paymenthighway-merchant-backend-demo), which connects to the [Payment Highway development sandbox](https://dev.paymenthighway.io/#development-sandbox). Each merchant needs to implement this backend themselves.
 
-For more info see the code [here]().
+For more info see the code [here](https://github.com/PaymentHighway/paymenthighway-merchant-backend-demo).
 
 In client side you need to implement the BackendAdapter interface. 
 
