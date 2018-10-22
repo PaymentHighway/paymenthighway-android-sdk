@@ -12,7 +12,7 @@ This is the [Payment Highway](https://www.paymenthighway.io) Android SDK.
 
 You will need to have a custom mobile application backend that handles session id and token management.
 
-See the backendadapterexample module included in the SDK.
+See the [backendadapterexample](https://github.com/PaymentHighway/paymenthighway-android-sdk/tree/master/backendadapterexample) module included in the SDK.
 
 ## License
 MIT
@@ -32,3 +32,4 @@ dependencies {
 # Use
 
 See the [Demo Project](https://github.com/PaymentHighway/paymenthighway-android-sdk/tree/master/demo) included how to use the sdk.
+

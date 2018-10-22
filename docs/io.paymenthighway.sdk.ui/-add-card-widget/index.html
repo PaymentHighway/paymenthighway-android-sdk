@@ -1,0 +1,114 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>AddCardWidget - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">io.paymenthighway.sdk.ui</a>&nbsp;/&nbsp;<a href="./index.html">AddCardWidget</a><br/>
+<br/>
+<h1>AddCardWidget</h1>
+<code><span class="keyword">class </span><span class="identifier">AddCardWidget</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">LinearLayout</span><span class="symbol">, </span><a href="../-validation-listener/index.html"><span class="identifier">ValidationListener</span></a></code>
+<p>Add Card Widget</p>
+<p>You can include this widget in any or your view's layout.
+This permit the user to input credit card number, expiry date and security code</p>
+<pre><code>import io.paymenthighway.sdk.ui.AddCardWidget
+
+
+internal lateinit var mCardInputWidget: AddCardWidget
+
+mCardInputWidget = findViewById&lt;AddCardWidget&gt;(R.id.add_card_widget)
+
+@see AddCardActivity in the demo example
+</code></pre>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">AddCardWidget</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.ui.AddCardWidget$<init>(android.content.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">?</span><span class="symbol">)</span></code><br/>
+<code><span class="identifier">AddCardWidget</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.ui.AddCardWidget$<init>(android.content.Context, android.util.AttributeSet)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="io.paymenthighway.sdk.ui.AddCardWidget$<init>(android.content.Context, android.util.AttributeSet)/attrs">attrs</span><span class="symbol">:</span>&nbsp;<span class="identifier">AttributeSet</span><span class="symbol">?</span><span class="symbol">)</span></code><br/>
+<code><span class="identifier">AddCardWidget</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.ui.AddCardWidget$<init>(android.content.Context, android.util.AttributeSet, kotlin.Int)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="io.paymenthighway.sdk.ui.AddCardWidget$<init>(android.content.Context, android.util.AttributeSet, kotlin.Int)/attrs">attrs</span><span class="symbol">:</span>&nbsp;<span class="identifier">AttributeSet</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="io.paymenthighway.sdk.ui.AddCardWidget$<init>(android.content.Context, android.util.AttributeSet, kotlin.Int)/defStyleAttr">defStyleAttr</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span></code>
+<p>LinearLayout constructor</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-card-widget-validation-listener.html">addCardWidgetValidationListener</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">addCardWidgetValidationListener</span><span class="symbol">: </span><a href="../-validation-listener/index.html"><span class="identifier">ValidationListener</span></a><span class="symbol">?</span></code>
+<p>Can be set to listen when the the card info are valid</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="card.html">card</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">card</span><span class="symbol">: </span><a href="../../io.paymenthighway.sdk.model/-card-data/index.html"><span class="identifier">CardData</span></a><span class="symbol">?</span></code>
+<p>return the CardData if available and valid otherwise null</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="is-valid.html">isValid</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">isValid</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns true is all the card info are valid</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="m-card-number-edit-text.html">mCardNumberEditText</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">mCardNumberEditText</span><span class="symbol">: </span><a href="../-card-number-edit-text/index.html"><span class="identifier">CardNumberEditText</span></a></code>
+<p>Card number edit text</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="m-expiry-date-edit-text.html">mExpiryDateEditText</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">mExpiryDateEditText</span><span class="symbol">: </span><a href="../-expiry-date-edit-text/index.html"><span class="identifier">ExpiryDateEditText</span></a></code>
+<p>Expiry date edit text</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="m-security-code-edit-text.html">mSecurityCodeEditText</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">mSecurityCodeEditText</span><span class="symbol">: </span><a href="../-security-code-edit-text/index.html"><span class="identifier">SecurityCodeEditText</span></a></code>
+<p>Security code edit text</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="is-valid-did-change.html">isValidDidChange</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">isValidDidChange</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.ui.AddCardWidget$isValidDidChange(kotlin.Boolean)/isValid">isValid</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Called every time the related validation state isValid did change</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

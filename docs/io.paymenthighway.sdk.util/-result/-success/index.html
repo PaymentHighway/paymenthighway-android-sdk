@@ -1,0 +1,100 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Result.Success - </title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">io.paymenthighway.sdk.util</a>&nbsp;/&nbsp;<a href="../index.html">Result</a>&nbsp;/&nbsp;<a href="./index.html">Success</a><br/>
+<br/>
+<h1>Success</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Success</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">&gt;</span></code>
+<p>Operation was successful and return a associated value of type V</p>
+<h3>Parameters</h3>
+<p><a name="value"></a>
+<code>value</code> - associated to the sucessful operation</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">Success</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.util.Result.Success$<init>(io.paymenthighway.sdk.util.Result.Success.V)/value">value</span><span class="symbol">:</span>&nbsp;<a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">)</span></code>
+<p>Operation was successful and return a associated value of type V</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="value.html">value</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">value</span><span class="symbol">: </span><a href="index.html#V"><span class="identifier">V</span></a></code>
+<p>associated to the sucessful operation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../is-error.html">isError</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">isError</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns true if the result is a failure</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../is-success.html">isSuccess</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">isSuccess</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns true if the result is a success</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../get-error-or-null.html">getErrorOrNull</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getErrorOrNull</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../index.html#E"><span class="identifier">E</span></a><span class="symbol">?</span></code>
+<p>Returns the associated exception error of type E if operation encountered a failure, otherwise null</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../get-or-throw.html">getOrThrow</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getOrThrow</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../index.html#V"><span class="identifier">V</span></a></code>
+<p>Returns the associated value of type V if operation was successful, otherwise throws the failure exception</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../get-value-or-null.html">getValueOrNull</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getValueOrNull</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../index.html#V"><span class="identifier">V</span></a><span class="symbol">?</span></code>
+<p>Returns the associated value of type V if operation was successful, otherwise null</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

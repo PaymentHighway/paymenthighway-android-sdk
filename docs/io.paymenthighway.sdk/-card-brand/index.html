@@ -1,0 +1,208 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CardBrand - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">io.paymenthighway.sdk</a>&nbsp;/&nbsp;<a href="./index.html">CardBrand</a><br/>
+<br/>
+<h1>CardBrand</h1>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">CardBrand</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CardBrandData</span></code>
+<p>Card brands to which a payment card can belong</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="american-express.html">americanExpress</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">americanExpress</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CardBrand</span></a></code>
+<p>American Express card</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="diners-club.html">dinersClub</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">dinersClub</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CardBrand</span></a></code>
+<p>Diners Club card</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="discover.html">discover</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">discover</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CardBrand</span></a></code>
+<p>Discover card</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="jcb.html">jcb</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">jcb</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CardBrand</span></a></code>
+<p>JCB card</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="mastercard.html">mastercard</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">mastercard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CardBrand</span></a></code>
+<p>Mastercard card</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="visa.html">visa</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">visa</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CardBrand</span></a></code>
+<p>Visa card</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="cvc-length.html">cvcLength</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">cvcLength</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int-array/index.html"><span class="identifier">IntArray</span></a></code>
+<p>Returns the correct security code length for validating card brand</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="description.html">description</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">description</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Card brand printable</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="format.html">format</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">format</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span></code>
+<p>Returns regular expression string for formatting the card brand</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="pan-length.html">panLength</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">panLength</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int-array/index.html"><span class="identifier">IntArray</span></a></code>
+<p>Returns the correct card number length for validating card brand</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="pattern.html">pattern</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">pattern</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns the pattern to recognise a card brand</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="all-cases.html">allCases</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">allCases</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="./index.html"><span class="identifier">CardBrand</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="from-card-number.html">fromCardNumber</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">fromCardNumber</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.CardBrand.Companion$fromCardNumber(kotlin.String)/cardNumber">cardNumber</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">CardBrand</span></a><span class="symbol">?</span></code>
+<p>Recognize the card brand of a credit card number</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="american-express.html">americanExpress</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">americanExpress</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CardBrand</span></a></code>
+<p>American Express card</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="diners-club.html">dinersClub</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">dinersClub</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CardBrand</span></a></code>
+<p>Diners Club card</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="discover.html">discover</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">discover</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CardBrand</span></a></code>
+<p>Discover card</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="jcb.html">jcb</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">jcb</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CardBrand</span></a></code>
+<p>JCB card</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="mastercard.html">mastercard</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">mastercard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CardBrand</span></a></code>
+<p>Mastercard card</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="visa.html">visa</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">visa</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CardBrand</span></a></code>
+<p>Visa card</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
