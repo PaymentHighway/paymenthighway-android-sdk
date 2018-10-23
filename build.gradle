@@ -28,9 +28,9 @@ buildscript {
         libraryVersion = '2.0.0'
         vcsLibraryTag = "v-$libraryVersion"
 
-        developerId = 'stepiro'
-        developerName = 'Stefano Pironato'
-        developerEmail = 'stefano.pironato@paymenthighway.fi'
+        developerId = 'arnohietanen'
+        developerName = 'Arno Hietanen'
+        developerEmail = 'arno.hietanen@paymenthighway.fi'
 
         licenseName = 'MIT License'
         licenseUrl = 'https://github.com/PaymentHighway/paymenthighway-android-sdk/blob/master/LICENSE'
