@@ -1,5 +1,6 @@
 package io.paymenthighway.sdk
 
+import org.junit.Ignore
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
@@ -11,6 +12,7 @@ const val defaultTestTimeout: Long = 5
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest= Config.NONE, sdk=[23])
+@Ignore
 internal open class BaseTest {
 
     var lock: CountDownLatch = CountDownLatch(1)

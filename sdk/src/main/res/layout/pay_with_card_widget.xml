@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:id="@+id/pay_with_card_vertical_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/purchase_sum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:paddingTop="30dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:text="Purchase sum"
+            android:theme="@style/PHHeading1TextViewStyle"/>
+
+        <TextView
+            android:id="@+id/purchase_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:maxLines="3"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="Purchase description"
+            android:theme="@style/PHHeading2TextViewStyle" />
+
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/fill_in_the_information_on_your_card"
+            android:theme="@style/PHTextViewStyle" />
+
+        <io.paymenthighway.sdk.ui.AddCardWidget
+            android:id="@+id/add_card_widget"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</merge>
+

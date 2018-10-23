@@ -4,5 +4,6 @@
     <string name="title_activity_add_card">Add Credit Card</string>
     <string name="button_add_card">Add Card</string>
     <string name="cancel">Cancel</string>
+    <string name="button_pay">Pay</string>
     <string name="payment_highway_logo">Payment Highway logo</string>
 </resources>

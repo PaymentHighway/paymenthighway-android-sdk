@@ -11,22 +11,7 @@ import io.paymenthighway.sdk.model.CardData
 /**
  * Specialized text field for collecting credit number.
  */
-class CardNumberEditText : EditText {
-
-    /**
-     * TextInputEditText constructor
-     */
-    constructor(context: Context?) : super(context) {}
-
-    /**
-     * TextInputEditText constructor
-     */
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {}
-
-    /**
-     * TextInputEditText constructor
-     */
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
+class CardNumberEditText @JvmOverloads constructor(context: Context, attr: AttributeSet? = null): EditText(context, attr) {
 
     /**
      * Initialize the EditText with specific formatter, validator and hint and error texts

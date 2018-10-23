@@ -37,5 +37,14 @@ class ValidationListenerHelper: ValidationListener {
 fun AddCardWidget.setValidationListener(init: ValidationListenerHelper.() -> Unit) {
     val listener = ValidationListenerHelper()
     listener.init()
-    this.addCardWidgetValidationListener = listener
+    this.validationListener = listener
+}
+
+/**
+ * Extension to PayWithCardWidget in order to use lambdas instead of delegate ValidationListener
+ */
+fun PayWithCardWidget.setValidationListener(init: ValidationListenerHelper.() -> Unit) {
+    val listener = ValidationListenerHelper()
+    listener.init()
+    this.validationListener = listener
 }

@@ -12,27 +12,12 @@ internal const val DefaultCVCLength = 3
 /**
  * Specialized text field for collecting security code.
  */
-class SecurityCodeEditText : EditText {
+class SecurityCodeEditText @JvmOverloads constructor(context: Context, attr: AttributeSet? = null): EditText(context, attr) {
 
     /**
      * Security code validation, format and hint depend of the card brand
      */
     var cardBrand: () -> CardBrand? = { null }
-
-    /**
-     * TextInputEditText constructor
-     */
-    constructor(context: Context?) : super(context) {}
-
-    /**
-     * TextInputEditText constructor
-     */
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {}
-
-    /**
-     * TextInputEditText constructor
-     */
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
     /**
      * Initialize the EditText with specific formatter, validator and error texts

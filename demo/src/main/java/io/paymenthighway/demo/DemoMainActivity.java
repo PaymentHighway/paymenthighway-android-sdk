@@ -10,12 +10,15 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import io.paymenthighway.sdk.model.Purchase;
+import io.paymenthighway.sdk.model.PurchaseId;
+
 public class DemoMainActivity extends AppCompatActivity {
 
     enum Action {
 
         ADD_CARD("Add credit card"),
-        SETTINGS("Settings");
+        PAY_WITH_CARD("Pay with card");
 
         private String description;
 
@@ -53,14 +56,22 @@ public class DemoMainActivity extends AppCompatActivity {
                 final String item = (String) parent.getItemAtPosition(position);
                 Action action = Action.values()[position];
                 switch (action) {
-                    case ADD_CARD:
+                    case ADD_CARD: {
                         Intent intent = new Intent(view.getContext(), AddCardActivity.class);
                         startActivity(intent);
                         break;
-                    case SETTINGS:
-                        System.out.println("Settings to be implemented");
-                        break;
+                    }
+                    case PAY_WITH_CARD: {
+                        Intent intent = new Intent(view.getContext(), PayWithCardActivity.class);
+                        Purchase  purchase  = new Purchase(new PurchaseId("PurchaseId"),
+                                "EUR",
+                                123.45,
+                                "This is the description of the purchase");
 
+                        intent.putExtra("PURCHASE", purchase);
+                        startActivity(intent);
+                        break;
+                    }
                 }
             }
 

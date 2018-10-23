@@ -27,4 +27,23 @@
          <item name="android:fontFamily">@font/roboto</item>
      </style>
 
+    <style name="PHBaseTextViewStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">?primaryForegroundColor</item>
+        <item name="android:background">?primaryBackgroundColor</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="PHHeading1TextViewStyle" parent="PHBaseTextViewStyle">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="PHHeading2TextViewStyle" parent="PHBaseTextViewStyle">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="PHTextViewStyle" parent="PHBaseTextViewStyle">
+        <item name="android:textSize">16sp</item>
+    </style>
+
  </resources>

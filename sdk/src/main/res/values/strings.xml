@@ -7,4 +7,5 @@
     <string name="error_card_number">Invalid card number!</string>
     <string name="error_expiry_date">Invalid expiry date!</string>
     <string name="error_security_code">Invalid security code!</string>
+    <string name="fill_in_the_information_on_your_card">Please fill in the information on your card</string>
 </resources>

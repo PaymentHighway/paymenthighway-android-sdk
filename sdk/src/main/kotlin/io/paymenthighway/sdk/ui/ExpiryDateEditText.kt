@@ -10,27 +10,12 @@ import io.paymenthighway.sdk.model.ExpiryDate
 /**
  * Specialized text field for collecting expiration date.
  */
-class ExpiryDateEditText : EditText {
+class ExpiryDateEditText @JvmOverloads constructor(context: Context, attr: AttributeSet? = null): EditText(context, attr) {
 
     /**
      * The expiry date formatter need to know if the last key has been a <del>
      */
     private var lastKeyDel = false
-
-    /**
-     * TextInputEditText constructor
-     */
-    constructor(context: Context?) : super(context) {}
-
-    /**
-     * TextInputEditText constructor
-     */
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {}
-
-    /**
-     * TextInputEditText constructor
-     */
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
     /**
      * Initialize the EditText with specific formatter, validator and hint and error texts

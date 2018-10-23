@@ -20,14 +20,9 @@ import io.paymenthighway.sdk.model.PaymentConfig
 import io.paymenthighway.sdk.ui.*
 import io.paymenthighway.sdk.util.Result
 
-class AddCardActivity : AppCompatActivity(), ValidationListener {
+class AddCardActivity : BaseActivity() {
 
     internal lateinit var mCardInputWidget: AddCardWidget
-    internal lateinit var mAddCardButton: Button
-    internal lateinit var mCancelButton: Button
-    internal lateinit var mProgressBar: ProgressBar
-
-    internal  lateinit  var mPaymentContext: PaymentContext<TransactionToken>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,37 +31,31 @@ class AddCardActivity : AppCompatActivity(), ValidationListener {
         mCardInputWidget = findViewById<AddCardWidget>(R.id.add_card_widget)
 
         // Example For ValidationListener as delegate see below implementation
-        // mCardInputWidget.addCardWidgetValidationListener = this
+        // mCardInputWidget.validationListener = this
 
         mCardInputWidget.setValidationListener {
             isValidDidChange {
-                mAddCardButton.isEnabled = it
+                super.mOkButton.isEnabled = it
                 if (it) {
                     hideKeyboard()
                 }
             }
         }
 
-        mAddCardButton = findViewById<Button>(R.id.add_card_button)
-        mCancelButton = findViewById<Button>(R.id.cancel_button)
-        mProgressBar = findViewById<ProgressBar>(R.id.progress_bar)
+        super.mOkButton = findViewById<Button>(R.id.add_card_button)
+        super.mCancelButton = findViewById<Button>(R.id.cancel_button)
+        super.mProgressBar = findViewById<ProgressBar>(R.id.progress_bar)
 
-
-        mCancelButton.setOnClickListener(View.OnClickListener { view ->
-            finish()
-        })
-
-        mAddCardButton.isEnabled = false
-        mAddCardButton.setOnClickListener(View.OnClickListener { view ->
+        super.mOkAction = okAction@ {
             val cardData = mCardInputWidget.card
             if (cardData == null) {
-                Snackbar.make(view, "Invalid card data!", Snackbar.LENGTH_LONG).show()
-                return@OnClickListener
+                Snackbar.make(it, "Invalid card data!", Snackbar.LENGTH_LONG).show()
+                return@okAction
             }
-            progressBarVisible(true)
-            mPaymentContext.addCard(cardData) {result ->
+            super.progressBarVisible(true)
+            super.mPaymentContext.addCard(cardData) {result ->
                 runOnUiThread {
-                    progressBarVisible(false)
+                    super.progressBarVisible(false)
                     when (result) {
                         is Result.Success -> {
                             val transactionToken = result.value
@@ -78,62 +67,16 @@ class AddCardActivity : AppCompatActivity(), ValidationListener {
                                 last digits:  ${transactionToken.card.partialPan}
                                 expiry date:  ${transactionToken.card.expireMonth}/${transactionToken.card.expireYear}
                             """.trimIndent()
-                            showAlertDialog("Add card completed", message) {
+                            super.showAlertDialog("Add card completed", message) {
                                 finish()
                             }
                         }
                         is Result.Failure -> {
-                            Snackbar.make(view, result.error.message ?: "Error in adding card!", Snackbar.LENGTH_LONG).show()
+                            Snackbar.make(it, result.error.message ?: "Error in adding card!", Snackbar.LENGTH_LONG).show()
                         }
                     }
                 }
             }
-        })
-
-        val backendAdapter = BackendAdapterExample()
-        val paymentConfig = PaymentConfig(merchantId, accountId, Environment.Sandbox)
-        mPaymentContext = PaymentContext(paymentConfig, backendAdapter)
-    }
-
-    override fun isValidDidChange(isValid: Boolean) {
-        mAddCardButton.isEnabled = isValid
-        if (isValid) {
-            hideKeyboard()
         }
     }
-
-    private fun hideKeyboard() {
-        if (currentFocus == null) return
-        val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
-    }
-
-    private fun showAlertDialog(title: String, message: String, completion: () -> Unit) {
-        val builder = AlertDialog.Builder(this)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("OK") {  _, _ ->
-                    completion()
-                }
-        val dialog = builder.create()
-        dialog.show()
-    }
-
-    private fun progressBarVisible(visible: Boolean) {
-        if (visible) {
-            mProgressBar.visibility = View.VISIBLE
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-        } else {
-            mProgressBar.visibility = View.INVISIBLE
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-        }
-    }
-
-    companion object {
-
-        internal val merchantId = MerchantId("test_merchantId")
-        internal val accountId = AccountId("test")
-    }
-
 }

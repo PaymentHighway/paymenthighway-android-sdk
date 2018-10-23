@@ -11,7 +11,7 @@ import android.util.AttributeSet
 /**
  * Base class for the Payment Highway text input ui items
  */
-open class EditText : TextInputEditText {
+open class EditText @JvmOverloads constructor(context: Context, attr: AttributeSet? = null): TextInputEditText(context, attr) {
 
     /**
      * Text formatter
@@ -63,21 +63,6 @@ open class EditText : TextInputEditText {
             field = value
             editTextValidationListener?.isValidDidChange(value)
         }
-
-    /**
-     * TextInputEditText constructor
-     */
-    constructor(context: Context?) : super(context) {}
-
-    /**
-     * TextInputEditText constructor
-     */
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {}
-
-    /**
-     * TextInputEditText constructor
-     */
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
     init {
         addTextChangedListener(object : TextWatcher {
