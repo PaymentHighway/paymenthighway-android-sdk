@@ -15,16 +15,16 @@ internal data class TransactionTokenApiResult(override val result: ApiResultInfo
 
 internal interface BackendAdapterEndpointExample {
 
-    @GET("/mobile-key")
+    @GET("paymenthighway/transaction")
     fun transactionId(): Call<TransactionId>
 
-    @POST("/tokenization/{transactionId}")
+    @POST("paymenthighway/tokenization/{transactionId}")
     fun tokenizeTransaction(@Path("transactionId") transactionId: TransactionId): Call<TransactionTokenApiResult>
 
     companion object {
         fun create(): BackendAdapterEndpointExample {
             val retrofit = Retrofit.Builder()
-                            .baseUrl("http://54.194.196.206:8081")
+                            .baseUrl("https://ssocw2l28c.execute-api.eu-west-1.amazonaws.com/staging/")
                             .callbackExecutor(Executors.newCachedThreadPool())
                             .addConverterFactory(GsonConverterFactory.create())
                             .build()
