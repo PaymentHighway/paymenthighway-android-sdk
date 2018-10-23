@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>PaymentContext - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">io.paymenthighway.sdk</a>&nbsp;/&nbsp;<a href="./index.html">PaymentContext</a><br/>
+<br/>
+<h1>PaymentContext</h1>
+<code><span class="keyword">class </span><span class="identifier">PaymentContext</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>PaymentContext manages all the functionality the payment context, such as adding a new payment card.</p>
+<h3>Parameters</h3>
+<p><a name="V"></a>
+<code>V</code> - the type of the BackendAdapter</p>
+<p><a name="config"></a>
+<code>config</code> - the configuration for Payment Highway</p>
+<p><a name="backendAdapter"></a>
+<code>backendAdapter</code> - provide your BackendAdapter implementation</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">PaymentContext</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.PaymentContext$<init>(io.paymenthighway.sdk.model.PaymentConfig, io.paymenthighway.sdk.BackendAdapter((io.paymenthighway.sdk.PaymentContext.V)))/config">config</span><span class="symbol">:</span>&nbsp;<a href="../../io.paymenthighway.sdk.model/-payment-config/index.html"><span class="identifier">PaymentConfig</span></a><span class="symbol">, </span><span class="identifier" id="io.paymenthighway.sdk.PaymentContext$<init>(io.paymenthighway.sdk.model.PaymentConfig, io.paymenthighway.sdk.BackendAdapter((io.paymenthighway.sdk.PaymentContext.V)))/backendAdapter">backendAdapter</span><span class="symbol">:</span>&nbsp;<a href="../-backend-adapter/index.html"><span class="identifier">BackendAdapter</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">)</span></code>
+<p>Main constructor</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-card.html">addCard</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addCard</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.PaymentContext$addCard(io.paymenthighway.sdk.model.CardData, kotlin.Function1((io.paymenthighway.sdk.util.Result((io.paymenthighway.sdk.PaymentContext.V, java.lang.Exception)), kotlin.Unit)))/card">card</span><span class="symbol">:</span>&nbsp;<a href="../../io.paymenthighway.sdk.model/-card-data/index.html"><span class="identifier">CardData</span></a><span class="symbol">, </span><span class="identifier" id="io.paymenthighway.sdk.PaymentContext$addCard(io.paymenthighway.sdk.model.CardData, kotlin.Function1((io.paymenthighway.sdk.util.Result((io.paymenthighway.sdk.PaymentContext.V, java.lang.Exception)), kotlin.Unit)))/completion">completion</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../io.paymenthighway.sdk.util/-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html"><span class="identifier">Exception</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Adds a new Payment Card</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

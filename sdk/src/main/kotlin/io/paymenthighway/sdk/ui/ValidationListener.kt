@@ -15,6 +15,9 @@ interface ValidationListener {
 
 private typealias IsValidDidChangeListener = (Boolean) -> Unit
 
+/**
+ * Helper to use lambdas instead of delegate ValidationListener
+ */
 class ValidationListenerHelper: ValidationListener {
 
     private var isValidDidChangeListener: IsValidDidChangeListener? = null
@@ -28,6 +31,9 @@ class ValidationListenerHelper: ValidationListener {
     }
 }
 
+/**
+ * Extension to AddCardWidget in order to use lambdas instead of delegate ValidationListener
+ */
 fun AddCardWidget.setValidationListener(init: ValidationListenerHelper.() -> Unit) {
     val listener = ValidationListenerHelper()
     listener.init()

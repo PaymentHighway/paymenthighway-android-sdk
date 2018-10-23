@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CardData - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">io.paymenthighway.sdk.model</a>&nbsp;/&nbsp;<a href="./index.html">CardData</a><br/>
+<br/>
+<h1>CardData</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CardData</span></code>
+<p>Data class to hold card info</p>
+<h3>Parameters</h3>
+<p><a name="pan"></a>
+<code>pan</code> - The card number</p>
+<p><a name="cvc"></a>
+<code>cvc</code> - The card security code</p>
+<p><a name="expiryDate"></a>
+<code>expiryDate</code> - The card expiry date</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">CardData</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.model.CardData$<init>(kotlin.String, kotlin.String, io.paymenthighway.sdk.model.ExpiryDate)/pan">pan</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.paymenthighway.sdk.model.CardData$<init>(kotlin.String, kotlin.String, io.paymenthighway.sdk.model.ExpiryDate)/cvc">cvc</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.paymenthighway.sdk.model.CardData$<init>(kotlin.String, kotlin.String, io.paymenthighway.sdk.model.ExpiryDate)/expiryDate">expiryDate</span><span class="symbol">:</span>&nbsp;<a href="../-expiry-date/index.html"><span class="identifier">ExpiryDate</span></a><span class="symbol">)</span></code>
+<p>Data class to hold card info</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="cvc.html">cvc</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">cvc</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The card security code</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="expiry-date.html">expiryDate</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">expiryDate</span><span class="symbol">: </span><a href="../-expiry-date/index.html"><span class="identifier">ExpiryDate</span></a></code>
+<p>The card expiry date</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="pan.html">pan</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">pan</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The card number</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="format-card-number.html">formatCardNumber</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">formatCardNumber</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.model.CardData.Companion$formatCardNumber(kotlin.String)/cardNumber">cardNumber</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Format a given card number to a neat string</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="format-security-code.html">formatSecurityCode</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">formatSecurityCode</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.model.CardData.Companion$formatSecurityCode(kotlin.String, io.paymenthighway.sdk.CardBrand)/securityCode">securityCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.paymenthighway.sdk.model.CardData.Companion$formatSecurityCode(kotlin.String, io.paymenthighway.sdk.CardBrand)/cardBrand">cardBrand</span><span class="symbol">:</span>&nbsp;<a href="../../io.paymenthighway.sdk/-card-brand/index.html"><span class="identifier">CardBrand</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Format a given security code</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="is-card-number-valid.html">isCardNumberValid</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">isCardNumberValid</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.model.CardData.Companion$isCardNumberValid(kotlin.String)/cardNumber">cardNumber</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Validate a given credit card number using the Luhn algorithm</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="is-security-code-valid.html">isSecurityCodeValid</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">isSecurityCodeValid</span><span class="symbol">(</span><span class="identifier" id="io.paymenthighway.sdk.model.CardData.Companion$isSecurityCodeValid(kotlin.String, io.paymenthighway.sdk.CardBrand)/securityCode">securityCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="io.paymenthighway.sdk.model.CardData.Companion$isSecurityCodeValid(kotlin.String, io.paymenthighway.sdk.CardBrand)/cardBrand">cardBrand</span><span class="symbol">:</span>&nbsp;<a href="../../io.paymenthighway.sdk/-card-brand/index.html"><span class="identifier">CardBrand</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Validate a given security code
+Need the card brand to understand the lenght of the security code</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
