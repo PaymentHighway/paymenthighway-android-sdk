@@ -59,27 +59,25 @@ If you have the card data available (for example from your own form) then you ca
     }    
 ```
 
-## AddCardViewController
+## AddCardWidget
 
 Payment Highway SDK provide UI Form to input a credit card.
 
-You need to add in your layout the AddCardWidget
-
+You need to add in your layout the AddCardWidget:
 ```xml
     <io.paymenthighway.sdk.ui.AddCardWidget
         android:id="@+id/add_card_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
 ```
 
 In your activity you can add the reference to it in this way:
 ```kotlin
-    import io.paymenthighway.sdk.PaymentContext
+    import io.paymenthighway.sdk.ui.AddCardWidget
 
-    lateinit var mCardInputWidget: AddCardWidget
+    internal lateinit var mCardInputWidget: AddCardWidget
     
     mCardInputWidget = findViewById<AddCardWidget>(R.id.add_card_widget)
 ```
@@ -145,8 +143,48 @@ Then you can add the card and get (if implemented in backendadapter) a payment t
             }
         }
     }    
-
 ```
+
+## PayWithCardWidget
+
+Payment Highway SDK provide UI Form to input a credit card then make a payment.
+
+You need to add in your layout the AddCardWidget
+
+```xml
+     <io.paymenthighway.sdk.ui.PayWithCardWidget
+        android:id="@+id/pay_with_card_widget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+```
+
+In your activity you can add the reference to it in this way:
+```kotlin
+    import io.paymenthighway.sdk.ui.PayWithCardWidget
+
+    internal lateinit var mPayWithCardWidget: PayWithCardWidget
+    
+    mPayWithCardWidget = findViewById<PayWithCardWidget>(R.id.pay_with_card_widget)
+```
+
+You can provide the information of the purchase  in this way:
+```kotlin
+
+    val purchase = Purchase(PurchaseId("Your Purchase Id"),
+                            "EUR",
+                            123.45,
+                            "This is the description of your purchase")
+
+    mPayWithCardWidget.purchase = purchase
+```
+
+Information of the purchase are displayed in the view using TextViews.
+Here the styles used:
+1. Amount of the purchase - PHHeading1TextViewStyle
+2. Description of the purchase - PHHeading2TextViewStyle
+3. Other info - PHTextViewStyle
 
 ## How customize appearence of the Payment Highway UI Elements
 
@@ -181,6 +219,29 @@ SDK provides Styles for the TextInputLayout, for the EditText and for the ErrorT
          <item name="android:textSize">14sp</item>
          <item name="android:fontFamily">@font/roboto</item>
      </style>
+```
+
+SDK provides Styles for all the TextViews used in the views.
+
+```xml
+    <style name="PHBaseTextViewStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">?primaryForegroundColor</item>
+        <item name="android:background">?primaryBackgroundColor</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="PHHeading1TextViewStyle" parent="PHBaseTextViewStyle">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="PHHeading2TextViewStyle" parent="PHBaseTextViewStyle">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="PHTextViewStyle" parent="PHBaseTextViewStyle">
+        <item name="android:textSize">16sp</item>
+    </style>
 ```
 
 The SDK defines a set of attributes that can be configured in your theme:
